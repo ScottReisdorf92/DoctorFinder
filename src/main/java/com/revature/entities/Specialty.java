@@ -6,15 +6,21 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "")
-public class Speciality {
+@Table(name="specialty")
+public class Specialty {
 	
 	// Fields
 	
 	@Id
+<<<<<<< HEAD:src/main/java/com/revature/entities/Speciality.java
 	@Column(updatable = false, name ="")
 	private int specialityId;
 	@Column(name = "")
+=======
+	@Column(updatable = false, name ="specialty_id")
+	private int specalityId;
+	@Column(name = "specialty_name")
+>>>>>>> 629809b5a3d2309c5a8d0b967754cf965a5bc80f:src/main/java/com/revature/entities/Specialty.java
 	private String speciality;
 
 
@@ -22,13 +28,17 @@ public class Speciality {
 	//-------------------------------------------------------
 	//Constructors
 	
-	public Speciality() {
+	public Specialty() {
 		super();
 	}
 
 
 
+<<<<<<< HEAD:src/main/java/com/revature/entities/Speciality.java
 	public Speciality(int specialityId, String speciality) {
+=======
+	public Specialty(int specalityId, String speciality) {
+>>>>>>> 629809b5a3d2309c5a8d0b967754cf965a5bc80f:src/main/java/com/revature/entities/Specialty.java
 		super();
 		this.specialityId = specialityId;
 		this.speciality = speciality;
@@ -36,7 +46,7 @@ public class Speciality {
 
 
 
-	public Speciality(String speciality) {
+	public Specialty(String speciality) {
 		super();
 		this.speciality = speciality;
 	}

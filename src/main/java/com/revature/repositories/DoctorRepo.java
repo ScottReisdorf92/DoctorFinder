@@ -7,6 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 import com.revature.entities.Doctor;
 
 public interface DoctorRepo extends CrudRepository<Doctor, Integer>{
+<<<<<<< HEAD
 		
 	public Doctor getDoctorByEmail(String email);
 	
@@ -14,4 +15,8 @@ public interface DoctorRepo extends CrudRepository<Doctor, Integer>{
 	
 	public List<Doctor> getDoctorBySpecialty(int specialty_id);
 	
+=======
+	
+
+>>>>>>> 629809b5a3d2309c5a8d0b967754cf965a5bc80f
 }

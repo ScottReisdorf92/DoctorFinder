@@ -44,16 +44,12 @@ public class Doctor {
 
 	// Foreign Key Columns
 	@OneToOne
-	@JoinColumn(name = "")
-	private Speciality specalityId;
+	@JoinColumn(name = "specialty_id")
+	private int specalityId;
 
 	@OneToOne
-	@JoinColumn(name = "")
-	private Practice practiceId;
-
-	@OneToOne
-	@JoinColumn(name = "")
-	private Insurance insuranceId;
+	@JoinColumn(name = "practice_id")
+	private int practiceId;
 
 //------------------------------------------------------------------
 	// Constructors
@@ -64,7 +60,7 @@ public class Doctor {
 	
 	
 	public Doctor(int docId, String email, String firstName, String lastName, String password, int yearsInPractice,
-			String description, String medSchool, Speciality specalityId, Practice practiceId, Insurance insuranceId) {
+			String description, String medSchool, int specalityId, int practiceId) {
 		super();
 		this.docId = docId;
 		this.email = email;
@@ -76,12 +72,11 @@ public class Doctor {
 		this.medSchool = medSchool;
 		this.specalityId = specalityId;
 		this.practiceId = practiceId;
-		this.insuranceId = insuranceId;
 	}
 
 
 	public Doctor(String email, String firstName, String lastName, String password, int yearsInPractice,
-			String description, String medSchool, Speciality specalityId, Practice practiceId, Insurance insuranceId) {
+			String description, String medSchool, int specalityId, int practiceId) {
 		super();
 		this.email = email;
 		this.firstName = firstName;
@@ -92,7 +87,6 @@ public class Doctor {
 		this.medSchool = medSchool;
 		this.specalityId = specalityId;
 		this.practiceId = practiceId;
-		this.insuranceId = insuranceId;
 	}
 
 
@@ -181,35 +175,24 @@ public class Doctor {
 	}
 
 
-	public Speciality getSpecalityId() {
+	public int getSpecalityId() {
 		return specalityId;
 	}
 
 
-	public void setSpecalityId(Speciality specalityId) {
+	public void setSpecalityId(int specalityId) {
 		this.specalityId = specalityId;
 	}
 
 
-	public Practice getPracticeId() {
+	public int getPracticeId() {
 		return practiceId;
 	}
 
 
-	public void setPracticeId(Practice practiceId) {
+	public void setPracticeId(int practiceId) {
 		this.practiceId = practiceId;
 	}
-
-
-	public Insurance getInsuranceId() {
-		return insuranceId;
-	}
-
-
-	public void setInsuranceId(Insurance insuranceId) {
-		this.insuranceId = insuranceId;
-	}
-
 
 
 	
@@ -221,8 +204,7 @@ public class Doctor {
 	public String toString() {
 		return "Doctor [docId=" + docId + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName
 				+ ", password=" + password + ", yearsInPractice=" + yearsInPractice + ", description=" + description
-				+ ", yearGraduated=" + medSchool + ", specalityId=" + specalityId + ", practiceId=" + practiceId
-				+ ", insuranceId=" + insuranceId + "]";
+				+ ", yearGraduated=" + medSchool + ", specalityId=" + specalityId + ", practiceId=" + practiceId + "]";
 	}
 	
 	

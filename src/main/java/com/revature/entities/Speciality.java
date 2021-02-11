@@ -13,7 +13,7 @@ public class Speciality {
 	
 	@Id
 	@Column(updatable = false, name ="")
-	private int specalityId;
+	private int specialityId;
 	@Column(name = "")
 	private String speciality;
 
@@ -28,9 +28,9 @@ public class Speciality {
 
 
 
-	public Speciality(int specalityId, String speciality) {
+	public Speciality(int specialityId, String speciality) {
 		super();
-		this.specalityId = specalityId;
+		this.specialityId = specialityId;
 		this.speciality = speciality;
 	}
 
@@ -47,14 +47,14 @@ public class Speciality {
 
 
 
-	public int getSpecalityId() {
-		return specalityId;
+	public int getspecialityId() {
+		return specialityId;
 	}
 
 
 
-	public void setSpecalityId(int specalityId) {
-		this.specalityId = specalityId;
+	public void setspecialityId(int specialityId) {
+		this.specialityId = specialityId;
 	}
 
 
@@ -76,7 +76,7 @@ public class Speciality {
 
 	@Override
 	public String toString() {
-		return "Speciality [specalityId=" + specalityId + ", speciality=" + speciality + "]";
+		return "Speciality [specialityId=" + specialityId + ", speciality=" + speciality + "]";
 	}
 	
 	

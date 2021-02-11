@@ -11,7 +11,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "")
+@Table(name = "doctors")
 public class Doctor {
 	
 	//----------------------------------------
@@ -19,28 +19,28 @@ public class Doctor {
 
 	// Primary Key Column
 	@Id
-	@Column(updatable = false, name = "")
-	@SequenceGenerator(sequenceName = "", name = "DOC_SEQ", allocationSize = 1)
-	@GeneratedValue(generator = "DOC_SEQ", strategy = GenerationType.SEQUENCE)
+	@Column(updatable = false, name = "doctor_id")
+	@SequenceGenerator(sequenceName = "USER_ID_SEQ", name = "USER_ID_SEQ", allocationSize = 1)
+	@GeneratedValue(generator = "USER_ID_SEQ", strategy = GenerationType.SEQUENCE)
 	private int docId;
 
 	// Unique key Column
-	@Column(unique = true)
+	@Column(unique = true, name = "email")
 	private String email;
 
 	// Normal Columns
-	@Column(name = "")
+	@Column(name = "first_name")
 	private String firstName;
-	@Column(name = "")
+	@Column(name = "last_name")
 	private String lastName;
-	@Column(name = "")
+	@Column(name = "password")
 	private String password;
-	@Column(name = "")
+	@Column(name = "years_in_practice")
 	private int yearsInPractice;
-	@Column(name = "")
+	@Column(name = "description")
 	private String description;
-	@Column(name = "")
-	private int yearGraduated;
+	@Column(name = "med_school")
+	private String medSchool;
 
 	// Foreign Key Columns
 	@OneToOne
@@ -64,7 +64,7 @@ public class Doctor {
 	
 	
 	public Doctor(int docId, String email, String firstName, String lastName, String password, int yearsInPractice,
-			String description, int yearGraduated, Speciality specalityId, Practice practiceId, Insurance insuranceId) {
+			String description, String medSchool, Speciality specalityId, Practice practiceId, Insurance insuranceId) {
 		super();
 		this.docId = docId;
 		this.email = email;
@@ -73,7 +73,7 @@ public class Doctor {
 		this.password = password;
 		this.yearsInPractice = yearsInPractice;
 		this.description = description;
-		this.yearGraduated = yearGraduated;
+		this.medSchool = medSchool;
 		this.specalityId = specalityId;
 		this.practiceId = practiceId;
 		this.insuranceId = insuranceId;
@@ -81,7 +81,7 @@ public class Doctor {
 
 
 	public Doctor(String email, String firstName, String lastName, String password, int yearsInPractice,
-			String description, int yearGraduated, Speciality specalityId, Practice practiceId, Insurance insuranceId) {
+			String description, String medSchool, Speciality specalityId, Practice practiceId, Insurance insuranceId) {
 		super();
 		this.email = email;
 		this.firstName = firstName;
@@ -89,7 +89,7 @@ public class Doctor {
 		this.password = password;
 		this.yearsInPractice = yearsInPractice;
 		this.description = description;
-		this.yearGraduated = yearGraduated;
+		this.medSchool = medSchool;
 		this.specalityId = specalityId;
 		this.practiceId = practiceId;
 		this.insuranceId = insuranceId;
@@ -171,13 +171,13 @@ public class Doctor {
 	}
 
 
-	public int getYearGraduated() {
-		return yearGraduated;
+	public String getMedSchool() {
+		return medSchool;
 	}
 
 
-	public void setYearGraduated(int yearGraduated) {
-		this.yearGraduated = yearGraduated;
+	public void setMedSchool(String medSchool) {
+		this.medSchool = medSchool;
 	}
 
 
@@ -221,7 +221,7 @@ public class Doctor {
 	public String toString() {
 		return "Doctor [docId=" + docId + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName
 				+ ", password=" + password + ", yearsInPractice=" + yearsInPractice + ", description=" + description
-				+ ", yearGraduated=" + yearGraduated + ", specalityId=" + specalityId + ", practiceId=" + practiceId
+				+ ", yearGraduated=" + medSchool + ", specalityId=" + specalityId + ", practiceId=" + practiceId
 				+ ", insuranceId=" + insuranceId + "]";
 	}
 	

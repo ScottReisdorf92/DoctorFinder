@@ -18,10 +18,10 @@
 	</properties>
 	
 	<dependencies>
+	
 		<dependency>
     		<groupId>org.postgresql</groupId>
     		<artifactId>postgresql</artifactId>
-    		<version>42.2.18</version>
 		</dependency>
 		
 		<dependency>
@@ -38,6 +38,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
 	</dependencies>
 
 	<build>

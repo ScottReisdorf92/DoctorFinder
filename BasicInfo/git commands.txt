@@ -1,0 +1,27 @@
+PUSHING TO THE CURRENT BRANCH
+git pull
+git add .
+git commit -m "Message goes here"
+git push (pushes to current branch)
+------------------------------------------------------------
+PULLING FROM THE CURRENT BRANCH
+git pull
+------------------------------------------------------------
+BRANCH MANAGEMENT
+
+git status
+git branch (displays all branches)
+git branch branchA (creates new branch)
+
+git checkout <branch name>  EX. git checkout branchA (Changes to branchA)
+git checkout -b <branch name> EX. git checkout -b branchB(Creates and changes to branchB)
+
+git push --set-upstream origin <branch name> (Linking local repo branch to global repo branch) (Only needed first time pushing or pulling from a new branch)
+------------------------------------------------------------
+
+PULL REQUEST - merges branches
+Similar to a push except it asks for permission
+Delete branches after successful merge request
+
+git pull origin master // origin just means get from the global repo, not the local
+// Immediately push to current branch to update global repo

@@ -6,15 +6,15 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "")
-public class Speciality {
+@Table(name="specialty")
+public class Specialty {
 	
 	// Fields
 	
 	@Id
-	@Column(updatable = false, name ="")
+	@Column(updatable = false, name ="specialty_id")
 	private int specalityId;
-	@Column(name = "")
+	@Column(name = "specialty_name")
 	private String speciality;
 
 
@@ -22,13 +22,13 @@ public class Speciality {
 	//-------------------------------------------------------
 	//Constructors
 	
-	public Speciality() {
+	public Specialty() {
 		super();
 	}
 
 
 
-	public Speciality(int specalityId, String speciality) {
+	public Specialty(int specalityId, String speciality) {
 		super();
 		this.specalityId = specalityId;
 		this.speciality = speciality;
@@ -36,7 +36,7 @@ public class Speciality {
 
 
 
-	public Speciality(String speciality) {
+	public Specialty(String speciality) {
 		super();
 		this.speciality = speciality;
 	}

@@ -11,7 +11,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "doctors")
+@Table(name="doctors")
 public class Doctor {
 	
 	//----------------------------------------
@@ -44,16 +44,13 @@ public class Doctor {
 
 	// Foreign Key Columns
 	@OneToOne
-	@JoinColumn(name = "")
-	private Speciality specalityId;
+	@JoinColumn(name = "specialty_id")
+	private Specialty specialtyId;
 
 	@OneToOne
-	@JoinColumn(name = "")
+	@JoinColumn(name = "practice_id")
 	private Practice practiceId;
 
-	@OneToOne
-	@JoinColumn(name = "")
-	private Insurance insuranceId;
 
 //------------------------------------------------------------------
 	// Constructors
@@ -64,7 +61,7 @@ public class Doctor {
 	
 	
 	public Doctor(int docId, String email, String firstName, String lastName, String password, int yearsInPractice,
-			String description, String medSchool, Speciality specalityId, Practice practiceId, Insurance insuranceId) {
+			String description, String medSchool, Specialty SpecialtyId, Practice practiceId) {
 		super();
 		this.docId = docId;
 		this.email = email;
@@ -74,14 +71,14 @@ public class Doctor {
 		this.yearsInPractice = yearsInPractice;
 		this.description = description;
 		this.medSchool = medSchool;
-		this.specalityId = specalityId;
+		this.specialtyId = SpecialtyId;
 		this.practiceId = practiceId;
-		this.insuranceId = insuranceId;
+	
 	}
 
 
 	public Doctor(String email, String firstName, String lastName, String password, int yearsInPractice,
-			String description, String medSchool, Speciality specalityId, Practice practiceId, Insurance insuranceId) {
+			String description, String medSchool, Specialty SpecialtyId, Practice practiceId) {
 		super();
 		this.email = email;
 		this.firstName = firstName;
@@ -90,9 +87,9 @@ public class Doctor {
 		this.yearsInPractice = yearsInPractice;
 		this.description = description;
 		this.medSchool = medSchool;
-		this.specalityId = specalityId;
+		this.specialtyId = SpecialtyId;
 		this.practiceId = practiceId;
-		this.insuranceId = insuranceId;
+	
 	}
 
 
@@ -181,13 +178,13 @@ public class Doctor {
 	}
 
 
-	public Speciality getSpecalityId() {
-		return specalityId;
+	public Specialty getSpecialtyId() {
+		return specialtyId;
 	}
 
 
-	public void setSpecalityId(Speciality specalityId) {
-		this.specalityId = specalityId;
+	public void setSpecialtyId(Specialty specialtyId) {
+		this.specialtyId = specialtyId;
 	}
 
 
@@ -201,14 +198,7 @@ public class Doctor {
 	}
 
 
-	public Insurance getInsuranceId() {
-		return insuranceId;
-	}
-
-
-	public void setInsuranceId(Insurance insuranceId) {
-		this.insuranceId = insuranceId;
-	}
+	
 
 
 
@@ -221,8 +211,8 @@ public class Doctor {
 	public String toString() {
 		return "Doctor [docId=" + docId + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName
 				+ ", password=" + password + ", yearsInPractice=" + yearsInPractice + ", description=" + description
-				+ ", yearGraduated=" + medSchool + ", specalityId=" + specalityId + ", practiceId=" + practiceId
-				+ ", insuranceId=" + insuranceId + "]";
+				+ ", yearGraduated=" + medSchool + ", SpecialtyId=" + specialtyId + ", practiceId=" + practiceId
+				+ ", insuranceId=" + "]";
 	}
 	
 	

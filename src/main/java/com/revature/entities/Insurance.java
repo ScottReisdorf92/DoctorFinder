@@ -9,18 +9,18 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "INSURANCES")
+@Table(name="insurances")
 public class Insurance {
 	
 	//---------------------------------------------------
 	//Fields
 	
 	@Id
-	@Column(updatable = false, name="")
+	@Column(updatable=false, name="insurance_id")
 	@SequenceGenerator(sequenceName = "", name = "INSURANCE_SEQ", allocationSize = 1)
 	@GeneratedValue(generator = "INSURANCE_SEQ", strategy = GenerationType.SEQUENCE)
 	private int insuranceId;
-	@Column(name = "")
+	@Column(name = "insurance_name")
 	private String insurance;
 	
 	//----------------------------------

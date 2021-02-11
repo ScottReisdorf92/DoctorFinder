@@ -12,10 +12,11 @@ public class Specialty {
 	// Fields
 	
 	@Id
+
 	@Column(updatable = false, name ="specialty_id")
-	private int specalityId;
+	private int specialtyId;
 	@Column(name = "specialty_name")
-	private String speciality;
+	private String specialty;
 
 
 	
@@ -28,17 +29,18 @@ public class Specialty {
 
 
 
-	public Specialty(int specalityId, String speciality) {
+
+	public Specialty(int specialtyId, String specialty) {
 		super();
-		this.specalityId = specalityId;
-		this.speciality = speciality;
+		this.specialtyId = specialtyId;
+		this.specialty = specialty;
 	}
 
 
 
 	public Specialty(String speciality) {
 		super();
-		this.speciality = speciality;
+		this.specialty = speciality;
 	}
 	
 	
@@ -47,26 +49,26 @@ public class Specialty {
 
 
 
-	public int getSpecalityId() {
-		return specalityId;
+	public int getspecialityId() {
+		return specialtyId;
 	}
 
 
 
-	public void setSpecalityId(int specalityId) {
-		this.specalityId = specalityId;
+	public void setspecialityId(int specialityId) {
+		this.specialtyId = specialityId;
 	}
 
 
 
 	public String getSpeciality() {
-		return speciality;
+		return specialty;
 	}
 
 
 
 	public void setSpeciality(String speciality) {
-		this.speciality = speciality;
+		this.specialty = speciality;
 	}
 	
 	//-----------------------------------------
@@ -76,7 +78,7 @@ public class Specialty {
 
 	@Override
 	public String toString() {
-		return "Speciality [specalityId=" + specalityId + ", speciality=" + speciality + "]";
+		return "Specialty [specialtyId=" + specialtyId + ", specialty=" + specialty + "]";
 	}
 	
 	

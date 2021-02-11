@@ -10,7 +10,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @ComponentScan("com.revature")
 @EnableJpaRepositories("com.revature.repositories")
 @EntityScan("com.revature.entities")
-
 public class Project2DfApplication {
 
 	public static void main(String[] args) {

@@ -1,11 +1,16 @@
 package com.revature.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -45,12 +50,18 @@ public class Doctor {
 	// Foreign Key Columns
 	@OneToOne
 	@JoinColumn(name = "specialty_id")
+
 	private Specialty specialtyId;
 
 	@OneToOne
 	@JoinColumn(name = "practice_id")
 	private Practice practiceId;
-
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "doctors_insurance_accepted",
+			joinColumns = @JoinColumn(name = "doc_id"),
+			inverseJoinColumns = @JoinColumn(name = "insurance_id"))
+	private List<Insurance> insAccepted;
 
 //------------------------------------------------------------------
 	// Constructors
@@ -73,7 +84,6 @@ public class Doctor {
 		this.medSchool = medSchool;
 		this.specialtyId = SpecialtyId;
 		this.practiceId = practiceId;
-	
 	}
 
 
@@ -89,7 +99,6 @@ public class Doctor {
 		this.medSchool = medSchool;
 		this.specialtyId = SpecialtyId;
 		this.practiceId = practiceId;
-	
 	}
 
 
@@ -196,11 +205,6 @@ public class Doctor {
 	public void setPracticeId(Practice practiceId) {
 		this.practiceId = practiceId;
 	}
-
-
-	
-
-
 
 	
 //---------------------------------------------------------------------

@@ -12,16 +12,11 @@ public class Specialty {
 	// Fields
 	
 	@Id
-<<<<<<< HEAD:src/main/java/com/revature/entities/Speciality.java
-	@Column(updatable = false, name ="")
-	private int specialityId;
-	@Column(name = "")
-=======
+
 	@Column(updatable = false, name ="specialty_id")
-	private int specalityId;
+	private int specialtyId;
 	@Column(name = "specialty_name")
->>>>>>> 629809b5a3d2309c5a8d0b967754cf965a5bc80f:src/main/java/com/revature/entities/Specialty.java
-	private String speciality;
+	private String specialty;
 
 
 	
@@ -34,21 +29,18 @@ public class Specialty {
 
 
 
-<<<<<<< HEAD:src/main/java/com/revature/entities/Speciality.java
-	public Speciality(int specialityId, String speciality) {
-=======
-	public Specialty(int specalityId, String speciality) {
->>>>>>> 629809b5a3d2309c5a8d0b967754cf965a5bc80f:src/main/java/com/revature/entities/Specialty.java
+
+	public Specialty(int specialtyId, String specialty) {
 		super();
-		this.specialityId = specialityId;
-		this.speciality = speciality;
+		this.specialtyId = specialtyId;
+		this.specialty = specialty;
 	}
 
 
 
 	public Specialty(String speciality) {
 		super();
-		this.speciality = speciality;
+		this.specialty = speciality;
 	}
 	
 	
@@ -58,25 +50,25 @@ public class Specialty {
 
 
 	public int getspecialityId() {
-		return specialityId;
+		return specialtyId;
 	}
 
 
 
 	public void setspecialityId(int specialityId) {
-		this.specialityId = specialityId;
+		this.specialtyId = specialityId;
 	}
 
 
 
 	public String getSpeciality() {
-		return speciality;
+		return specialty;
 	}
 
 
 
 	public void setSpeciality(String speciality) {
-		this.speciality = speciality;
+		this.specialty = speciality;
 	}
 	
 	//-----------------------------------------
@@ -86,7 +78,7 @@ public class Specialty {
 
 	@Override
 	public String toString() {
-		return "Speciality [specialityId=" + specialityId + ", speciality=" + speciality + "]";
+		return "Specialty [specialtyId=" + specialtyId + ", specialty=" + specialty + "]";
 	}
 	
 	

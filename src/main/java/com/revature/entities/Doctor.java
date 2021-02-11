@@ -1,11 +1,16 @@
 package com.revature.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -45,20 +50,18 @@ public class Doctor {
 	// Foreign Key Columns
 	@OneToOne
 	@JoinColumn(name = "specialty_id")
-<<<<<<< HEAD
-	private int specalityId;
 
-	@OneToOne
-	@JoinColumn(name = "practice_id")
-	private int practiceId;
-=======
 	private Specialty specialtyId;
 
 	@OneToOne
 	@JoinColumn(name = "practice_id")
 	private Practice practiceId;
-
->>>>>>> 629809b5a3d2309c5a8d0b967754cf965a5bc80f
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "doctors_insurance_accepted",
+			joinColumns = @JoinColumn(name = "doc_id"),
+			inverseJoinColumns = @JoinColumn(name = "insurance_id"))
+	private List<Insurance> insAccepted;
 
 //------------------------------------------------------------------
 	// Constructors
@@ -69,11 +72,7 @@ public class Doctor {
 	
 	
 	public Doctor(int docId, String email, String firstName, String lastName, String password, int yearsInPractice,
-<<<<<<< HEAD
-			String description, String medSchool, int specalityId, int practiceId) {
-=======
 			String description, String medSchool, Specialty SpecialtyId, Practice practiceId) {
->>>>>>> 629809b5a3d2309c5a8d0b967754cf965a5bc80f
 		super();
 		this.docId = docId;
 		this.email = email;
@@ -85,19 +84,11 @@ public class Doctor {
 		this.medSchool = medSchool;
 		this.specialtyId = SpecialtyId;
 		this.practiceId = practiceId;
-<<<<<<< HEAD
-=======
-	
->>>>>>> 629809b5a3d2309c5a8d0b967754cf965a5bc80f
 	}
 
 
 	public Doctor(String email, String firstName, String lastName, String password, int yearsInPractice,
-<<<<<<< HEAD
-			String description, String medSchool, int specalityId, int practiceId) {
-=======
 			String description, String medSchool, Specialty SpecialtyId, Practice practiceId) {
->>>>>>> 629809b5a3d2309c5a8d0b967754cf965a5bc80f
 		super();
 		this.email = email;
 		this.firstName = firstName;
@@ -108,10 +99,6 @@ public class Doctor {
 		this.medSchool = medSchool;
 		this.specialtyId = SpecialtyId;
 		this.practiceId = practiceId;
-<<<<<<< HEAD
-=======
-	
->>>>>>> 629809b5a3d2309c5a8d0b967754cf965a5bc80f
 	}
 
 
@@ -200,15 +187,6 @@ public class Doctor {
 	}
 
 
-<<<<<<< HEAD
-	public int getSpecalityId() {
-		return specalityId;
-	}
-
-
-	public void setSpecalityId(int specalityId) {
-		this.specalityId = specalityId;
-=======
 	public Specialty getSpecialtyId() {
 		return specialtyId;
 	}
@@ -216,27 +194,18 @@ public class Doctor {
 
 	public void setSpecialtyId(Specialty specialtyId) {
 		this.specialtyId = specialtyId;
->>>>>>> 629809b5a3d2309c5a8d0b967754cf965a5bc80f
 	}
 
 
-	public int getPracticeId() {
+	public Practice getPracticeId() {
 		return practiceId;
 	}
 
 
-	public void setPracticeId(int practiceId) {
+	public void setPracticeId(Practice practiceId) {
 		this.practiceId = practiceId;
 	}
 
-
-<<<<<<< HEAD
-=======
-	
-
-
-
->>>>>>> 629809b5a3d2309c5a8d0b967754cf965a5bc80f
 	
 //---------------------------------------------------------------------
 	//ToString Method
@@ -246,12 +215,8 @@ public class Doctor {
 	public String toString() {
 		return "Doctor [docId=" + docId + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName
 				+ ", password=" + password + ", yearsInPractice=" + yearsInPractice + ", description=" + description
-<<<<<<< HEAD
-				+ ", yearGraduated=" + medSchool + ", specalityId=" + specalityId + ", practiceId=" + practiceId + "]";
-=======
 				+ ", yearGraduated=" + medSchool + ", SpecialtyId=" + specialtyId + ", practiceId=" + practiceId
 				+ ", insuranceId=" + "]";
->>>>>>> 629809b5a3d2309c5a8d0b967754cf965a5bc80f
 	}
 	
 	

@@ -9,7 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -20,9 +20,9 @@ public class Availability {
 	
 	// INSTANCE VARIABLES //
 	@Id
-	@Column(updatable = false, name = "availabilty_id")
-	@SequenceGenerator(sequenceName = "USER_ID_SEQ", name = "USER_ID_SEQ", allocationSize = 1)
-	@GeneratedValue(generator = "USER_ID_SEQ", strategy = GenerationType.SEQUENCE)
+	@Column(updatable = false, name = "availability_id")
+	@SequenceGenerator(sequenceName = "AVAILABILITY_ID_SEQ", name = "AVAILABILITY_ID_SEQ", allocationSize = 1)
+	@GeneratedValue(generator = "AVAILABILITY_ID_SEQ", strategy = GenerationType.SEQUENCE)
 	private int availId; // Primary Key
 	
 	@Column(name = "date")
@@ -36,12 +36,9 @@ public class Availability {
 	@JoinColumn(name = "specialty_id")
 	private Specialty specialtyId;
 	
-	@ManyToMany
-	@JoinColumn(name = "insurance_id")
-	private int insuranceId;
 	
-	@OneToOne
-	@JoinColumn(name = "doctor_id")
-	private int doctorId;
+	@ManyToOne
+	@JoinColumn(name = "doc_id")
+	private Doctor doctorId;
 	
 }

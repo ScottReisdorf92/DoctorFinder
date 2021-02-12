@@ -17,8 +17,6 @@ public class Practice {
 	
 	@Id
 	@Column(updatable = false, name="practice_id")
-	@SequenceGenerator(sequenceName = "", name = "LOC_SEQ", allocationSize = 1)
-	@GeneratedValue(generator = "LOC_SEQ", strategy = GenerationType.SEQUENCE)
 	private int practiceId;
 	
 	@Column(name = "open_time")

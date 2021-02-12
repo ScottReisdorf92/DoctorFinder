@@ -3,6 +3,7 @@ package com.revature.entities;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -12,8 +13,8 @@ public class Specialty {
 	// Fields
 	
 	@Id
-
 	@Column(updatable = false, name ="specialty_id")
+
 	private int specialtyId;
 	@Column(name = "specialty_name")
 	private String specialty;

@@ -1,0 +1,25 @@
+Application functionality
+- Show Doctor's availability
+- Filter by specialists (i.e. dermatologist, orthopedist, pedatrician, etc.)
+- Filter by availability
+- Filter by location
+- Specialist Profile
+- user profile
+- login/User can create an appt
+
+Application pages/views
+- Login page
+- User Dashboard
+- Doctor Dashboard
+- list of doctors
+- Doctor search
+- payment?
+
+What seems possible:
+- Take care of transaction/ charge credit cards
+- Insurance info on user profile
+- Reviews
+- Save list of previously visited doctors
+
+Stretch Goal
+- Add google maps api

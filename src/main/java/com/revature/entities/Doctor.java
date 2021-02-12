@@ -2,6 +2,7 @@ package com.revature.entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,9 +12,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name="doctors")
@@ -48,13 +51,14 @@ public class Doctor {
 	private String medSchool;
 
 	// Foreign Key Columns
-	@OneToOne
-	@JoinColumn(name = "specialty_id")
-
+	@JsonProperty(value="specialtyId")
+	@ManyToOne(cascade= CascadeType.ALL)
+	@JoinColumn(name = "specialty_id", referencedColumnName="specialty_id")
 	private Specialty specialtyId;
 
-	@OneToOne
-	@JoinColumn(name = "practice_id")
+
+	@ManyToOne(cascade= CascadeType.ALL)
+	@JoinColumn(name = "practice_id", referencedColumnName="practice_id")
 	private Practice practiceId;
 	
 	@ManyToMany(fetch = FetchType.LAZY)

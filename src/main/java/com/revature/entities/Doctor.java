@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -48,12 +48,11 @@ public class Doctor {
 	private String medSchool;
 
 	// Foreign Key Columns
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "specialty_id")
-
 	private Specialty specialtyId;
 
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "practice_id")
 	private Practice practiceId;
 	

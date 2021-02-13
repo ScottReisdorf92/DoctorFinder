@@ -1,6 +1,7 @@
 package com.revature.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +16,7 @@ public class PatientControllerImpl implements PatientController {
 	private PatientServ patServ;
 
 	@Override
+	@CrossOrigin
 	@PostMapping(value = "/patientLogin", consumes = "application/json", produces = "application/json")
 	public Patient patientLogin(@RequestBody Patient patient) {
 		System.out.println(patient);

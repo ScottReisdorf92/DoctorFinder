@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+
+<body>
+    <div>
+        <h1>Welcome to the Doctor Finder!</h1>
+        <p>This application is for you to find a doctor's appointment quickly
+            and at your earliest convenience. This application is not intended for
+            use if you have an Emergency. In the case of an emergency please call
+            911 or get to an Emergency Room. This application is intended to get you
+            to a doctor if you don't want to wait for possibly weeks to see your
+            normal doctor, and for you to find doctor appointment openings that you can
+            fit into your schedule!
+        </p>
+        <h2>Please Login Below!</h2>
+    </div>
+
+    <div class="container">
+        <label for="email"><b>Email</b></label>
+        <input id="email" type="text" placeholder="Enter Email" name="email" required>
+
+        <label for="password"><b>Password</b></label>
+        <input id="password" type="password" placeholder="Enter Password" name="password" required>
+
+        <button onclick="patientLogin()" type="button" id="patientLogin">Login as Patient</button>
+        <button onclick="doctorLogin()" type="button" id="doctorLogin">Login as Doctor</button>
+        <button onclick="signUp()" type="button" id="signUp">Not Registered? Sign Up now!</button>
+
+    </div>
+
+</body>
+<script>
+
+    function signUp() {
+
+        let signUpPage = document.getElementById("signUp");
+
+        createFormBtn.addEventListener("click", () => {
+            window.location.href = "http://localhost:8080/signUp.html";
+        })
+
+
+    }
+
+    function doctorLogin() {
+
+        let email = document.getElementById("email").value;
+        let password = document.getElementById("password").value;
+
+        console.log(email + password);
+
+        let doctor = {
+            email: email,
+            password: password
+        };
+
+        let xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function () {
+
+            if (this.readyState == 4 && this.status == 200) {
+                console.log(this.responseText);
+
+                let doc = JSON.parse(this.responseText);
+
+
+                // let information = `<h3>Welcome ${employee.firstName}!</h3><br>
+                //                 <button class="btn btn-primary" onclick="window.location.href='http://localhost:8080/DoctorFinder/doctorDashboard.html'"></button>`
+                // document.getElementById("result").innerHTML = information;
+
+            }
+        }
+
+        xhttp.open("POST", "http://localhost:8080/doctorLogin", true);
+
+        xhttp.setRequestHeader("Content-Type", "application/json");
+
+        xhttp.send(JSON.stringify(doctor));
+    }
+
+    function patientLogin() {
+
+        let email = document.getElementById("email").value;
+        let password = document.getElementById("password").value;
+
+        console.log(email + password);
+
+        let patient = {
+            email: email,
+            password: password
+        };
+
+        let xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function () {
+
+            if (this.readyState == 4 && this.status == 200) {
+                console.log(this.responseText);
+
+                let patient = JSON.parse(this.responseText);
+
+
+                // let information = `<h3>Welcome ${employee.firstName}!</h3><br>
+                //                 <button class="btn btn-primary" onclick="window.location.href='http://localhost:8080/DoctorFinder/doctorDashboard.html'"></button>`
+                // document.getElementById("result").innerHTML = information;
+
+            }
+        }
+
+        xhttp.open("POST", "http://localhost:8080/patientLogin", true);
+
+        xhttp.setRequestHeader("Content-Type", "application/json");
+
+        xhttp.send(JSON.stringify(patient));
+
+    }
+
+</script>
+
+</html>

@@ -20,4 +20,9 @@ public class PatientServImpl implements PatientServ {
 		}
 		return null;
 	}
+
+	@Override
+	public Patient loggedInPatient(String email) {
+		return patRepo.getPatientByEmail(email);
+	}
 }

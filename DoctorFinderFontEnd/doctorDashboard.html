@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Portal</title>
+</head>
+
+<body onload="getLoggedInDoctor()">
+
+    <div class="container">
+        <h1 id="header"></h1>
+    </div>
+    <div class="container">
+        <table id="infoTable"></table>
+    </div>
+
+</body>
+<script>
+
+    function getLoggedInDoctor() {
+
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                doctor = JSON.parse(this.responseText);
+                console.log(doctor);
+                docId = doctor.doctorId;
+                console.log("docId: " + docId);
+
+
+                let welcomeHeader = `<div class="container"><h1>Welcome ${doctor.firstName}!</h1></div>
+                    <div class="container">
+                    <h3>Here is your Information</h3><br>
+                    </div>`
+
+                let information =
+                    `<thead>
+                <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>${doctor.firstName}</td>
+                <td>${doctor.lastName}</td>
+                <td>${doctor.email}</td>
+            </tr>
+            </tbody>`
+
+                document.getElementById("header").innerHTML = welcomeHeader;
+                document.getElementById("infoTable").innerHTML = information;
+
+            }
+        }
+        xhttp.open("GET", "http://localhost:8080/loggedInDoctor", true);
+        xhttp.send();
+
+    }
+
+
+</script>
+
+</html>

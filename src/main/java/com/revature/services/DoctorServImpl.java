@@ -16,6 +16,7 @@ public class DoctorServImpl implements DoctorServ {
 	public Doctor doctorLogin(Doctor doctor) {
 		Doctor foundDoc = dr.getDoctorByEmail(doctor.getEmail());
 		if (foundDoc != null && foundDoc.getPassword().equals(doctor.getPassword())) {
+			System.out.println(foundDoc);
 			return foundDoc;
 		}
 		return null;

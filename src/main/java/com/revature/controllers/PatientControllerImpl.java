@@ -48,7 +48,15 @@ public class PatientControllerImpl implements PatientController {
 	                }
 	            }
 	        }
-	        
 	        return null;
+	}
+	
+
+	@PostMapping(value = "/PatientSignup", consumes = "application/json", produces = "application/json")
+	@CrossOrigin
+	public boolean addPatient(@RequestBody Patient p) { // https post
+
+		return (patServ.addPatient(p));
+
 	}
 }

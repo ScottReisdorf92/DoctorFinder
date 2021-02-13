@@ -25,4 +25,15 @@ public class PatientServImpl implements PatientServ {
 	public Patient loggedInPatient(String email) {
 		return patRepo.getPatientByEmail(email);
 	}
+	
+	@Override
+	public boolean addPatient(Patient p) {
+		
+		if (patRepo.getPatientByEmail(p.getEmail()) == null) {
+			patRepo.save(p);
+			return true;
+		}
+		return false;
+	}
 }
+	

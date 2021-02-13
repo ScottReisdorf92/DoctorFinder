@@ -1,0 +1,43 @@
+<html>
+
+<body>
+
+    <p>Logo and Title</p>
+    <p>Welcome new Patient</p>
+
+    <input type="text" id="firstname">First Name<input>
+    <input type="text" id="lastname">Last Name<input>
+    <input type="text" id="email">Email<input>
+    <input type="text" id="pass">Password<input>
+    <input type="button" id="submit">Create Account<input>
+
+    <p id="place"></p>
+
+</body>
+
+<script>
+
+    $("#submit").click(function () {
+        
+        var patient = {};
+        patient["firstName"] = $("#firstname").val();
+        patient["lastname"] = $("#lastname").val();
+        patient["email"] = $("#email").val();
+        patient["pass"] = $("#pass").val();
+
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: "patientSignup",
+            data: JSON.stringify(patient),
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+            }
+        });
+    });
+
+</script>
+
+
+</html>

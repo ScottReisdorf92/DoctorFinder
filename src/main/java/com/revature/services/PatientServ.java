@@ -8,4 +8,6 @@ public interface PatientServ {
 	
 	public Patient loggedInPatient(String email);
 
+	boolean addPatient(Patient p);
+	
 }

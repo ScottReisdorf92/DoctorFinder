@@ -6,8 +6,6 @@ import org.springframework.stereotype.Service;
 import com.revature.entities.Patient;
 import com.revature.repositories.PatientRepo;
 
-import ch.qos.logback.core.recovery.ResilientSyslogOutputStream;
-
 @Service
 public class PatientServImpl implements PatientServ {
 	

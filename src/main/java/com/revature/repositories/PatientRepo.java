@@ -13,4 +13,6 @@ public interface PatientRepo extends CrudRepository<Patient, Integer>{
 	public Patient getPatientByEmail(String email);
 	
 	public List<Patient> getPatientByFirstNameAndLastName(String firstName, String LastName);
+	
+	
 }

@@ -9,6 +9,7 @@ import com.revature.entities.Doctor;
 
 @Repository
 public interface DoctorRepo extends CrudRepository<Doctor, Integer>{
+	
 	public Doctor getDoctorByEmail(String email);
 	
 	public List<Doctor> getDoctorsByFirstNameAndLastName(String firstName, String lastName);

@@ -17,8 +17,8 @@ public class Practice {
 	
 	@Id
 	@Column(updatable = false, name="practice_id")
-	@SequenceGenerator(sequenceName = "", name = "LOC_SEQ", allocationSize = 1)
-	@GeneratedValue(generator = "LOC_SEQ", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(sequenceName = "PRACTICE_ID_SEQ", name = "PRACTICE_ID_SEQ", allocationSize = 1)
+	@GeneratedValue(generator = "PRACTICE_ID_SEQ", strategy = GenerationType.SEQUENCE)
 	private int practiceId;
 	
 	@Column(name = "open_time")
@@ -62,6 +62,104 @@ public class Practice {
 
 	//------------------------------------------------------------------
 	//ToString Method
+
+
+	public int getPracticeId() {
+		return practiceId;
+	}
+
+
+
+
+	public void setPracticeId(int practiceId) {
+		this.practiceId = practiceId;
+	}
+
+
+
+
+	public String getOpenTime() {
+		return openTime;
+	}
+
+
+
+
+	public void setOpenTime(String openTime) {
+		this.openTime = openTime;
+	}
+
+
+
+
+	public String getClosingTime() {
+		return closingTime;
+	}
+
+
+
+
+	public void setClosingTime(String closingTime) {
+		this.closingTime = closingTime;
+	}
+
+
+
+
+	public String getStreetAddress() {
+		return streetAddress;
+	}
+
+
+
+
+	public void setStreetAddress(String streetAddress) {
+		this.streetAddress = streetAddress;
+	}
+
+
+
+
+	public String getCity() {
+		return city;
+	}
+
+
+
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+
+
+
+	public String getState() {
+		return state;
+	}
+
+
+
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+
+
+
+	public int getZip() {
+		return zip;
+	}
+
+
+
+
+	public void setZip(int zip) {
+		this.zip = zip;
+	}
+
+
 
 
 	@Override

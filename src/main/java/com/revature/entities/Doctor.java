@@ -15,6 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name="doctors")
 public class Doctor {
@@ -48,6 +49,7 @@ public class Doctor {
 	private String medSchool;
 
 	// Foreign Key Columns
+
 	@ManyToOne
 	@JoinColumn(name = "specialty_id")
 	private Specialty specialtyId;

@@ -10,6 +10,5 @@ public class AppointmentControllerImpl implements AppointmentController {
 
 	@Autowired
 	private AppointmentServ apptServ;
-	
 	// Request mapping routes
 }

@@ -12,8 +12,8 @@ public class Specialty {
 	// Fields
 	
 	@Id
-
 	@Column(updatable = false, name ="specialty_id")
+
 	private int specialtyId;
 	@Column(name = "specialty_name")
 	private String specialty;

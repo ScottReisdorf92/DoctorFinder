@@ -1,13 +1,13 @@
 package com.revature.services;
 
-import javax.servlet.http.HttpServletResponse;
-
 import com.revature.entities.Doctor;
 
 public interface DoctorServ {
+	
+	public Doctor signUp(Doctor doctor);
 
-	Doctor doctorLogin(Doctor doctor);
+	public Doctor doctorLogin(Doctor doctor);
 
-	Doctor loggedInDoctor(String email);
+	public Doctor loggedInDoctor(int id);
 
 }

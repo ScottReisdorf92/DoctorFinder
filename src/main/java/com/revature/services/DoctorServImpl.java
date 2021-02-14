@@ -1,11 +1,8 @@
 package com.revature.services;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.CrossOrigin;
+
 
 import com.revature.entities.Doctor;
 import com.revature.repositories.DoctorRepo;
@@ -15,6 +12,11 @@ public class DoctorServImpl implements DoctorServ {
 
 	@Autowired
 	private DoctorRepo dr;
+
+	@Override
+	public Doctor signUp(Doctor doctor) {
+		return dr.save(doctor);
+	}
 
 	@Override
 	public Doctor doctorLogin(Doctor doctor) {
@@ -28,9 +30,9 @@ public class DoctorServImpl implements DoctorServ {
 	}
 
 	@Override
-	public Doctor loggedInDoctor(String email) {
-		return dr.getDoctorByEmail(email);
+	public Doctor loggedInDoctor(int id) {
+		return dr.findById(id).get();
 	}
-	
+
 	
 }

@@ -10,18 +10,30 @@ import com.revature.repositories.PatientRepo;
 public class PatientServImpl implements PatientServ {
 	
 	@Autowired
-	PatientRepo pr;
+	private PatientRepo patRepo;
+
+	@Override
+	public Patient patientLogin(Patient patient) {
+		Patient foundPatient = patRepo.getPatientByEmail(patient.getEmail());
+		if(foundPatient != null && foundPatient.getPassword().equals(patient.getPassword())) {
+			return foundPatient;
+		}
+		return null;
+	}
+
+	@Override
+	public Patient loggedInPatient(int id) {
+		return patRepo.findById(id).get();
+	}
 	
 	@Override
 	public boolean addPatient(Patient p) {
 		
-		if (pr.getPatientByEmail(p.getEmail()) == null) {
-			pr.save(p);
+		if (patRepo.getPatientByEmail(p.getEmail()) == null) {
+			patRepo.save(p);
 			return true;
 		}
-		
 		return false;
-		
 	}
 }
 	

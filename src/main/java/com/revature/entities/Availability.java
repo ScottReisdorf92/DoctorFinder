@@ -109,6 +109,13 @@ public class Availability {
 	public void setDoctorId(Doctor doctorId) {
 		this.doctorId = doctorId;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Availability [availId=" + availId + ", start=" + start + ", end=" + end + ", specialtyId=" + specialtyId
+				+ ", doctorId=" + doctorId + "]";
+	}
 	
 	
 	

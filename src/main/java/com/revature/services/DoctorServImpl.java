@@ -34,5 +34,10 @@ public class DoctorServImpl implements DoctorServ {
 		return dr.findById(id).get();
 	}
 
+	@Override
+	public Doctor getDoctorById(int docId) {
+		return dr.findById(docId).get();
+	}
+
 	
 }

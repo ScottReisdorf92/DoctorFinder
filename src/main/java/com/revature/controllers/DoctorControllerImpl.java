@@ -54,7 +54,7 @@ public class DoctorControllerImpl implements DoctorController {
 		System.out.println(id);
 		int inputId = Integer.parseInt(id);
 		
-	        return ds.loggedInDoctor(inputId);
+	    return ds.loggedInDoctor(inputId);
 	}
 
 	

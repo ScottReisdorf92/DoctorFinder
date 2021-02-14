@@ -16,18 +16,43 @@
         <table id="infoTable"></table>
     </div>
     <!-- placeholder, this is where the calendar appears -->
-    <div id="dp"></div>
+    <div class="main" style="display: flex;">
+        <div style="margin-right: 10px;">
+            <div id="nav"></div>
+        </div>
+        <div style="flex-grow: 1">
+            <div id="dp"></div>
+        </div>
+    </div>
 
     <!-- DayPilot Pro library-->
     <script src="daypilot-all.min.js"></script>
 
     <!-- basic calendar config -->
     <script>
+        var nav = new DayPilot.Navigator("nav");
+        nav.showMonths = 3;
+        nav.skipMonths = 3;
+        nav.selectMode = "week";
+        nav.onTimeRangeSelected = function(args) {
+            dp.startDate = args.day;
+            dp.update();
+        };
+        nav.init();
+       
+        
         var dp = new DayPilot.Calendar("dp");
         dp.viewType = "Week";
         dp.startDate = "2021-02-14";
         dp.init();
-        dp.rows.load("/loadAvailability");
+        // getting the whole queryurl
+        let parameter = window.location.search;
+        // splitting the parameters from the querystring
+        let urlparam = new URLSearchParams(parameter);
+        // getting the id from the queryurl
+        let paramsId = urlparam.get("id");
+        dp.eventsLoadMethod = "GET";
+        dp.events.load("http://localhost:8080/loadAvailability/" + paramsId);
 
     </script>
 
@@ -77,9 +102,9 @@
         // splitting the parameters from the querystring
         let urlparam = new URLSearchParams(parameter);
         // getting the id from the queryurl
-        let params = urlparam.get("id");
+        let paramsId = urlparam.get("id");
 
-        xhttp.open("GET", "http://localhost:8080/loggedInDoctor?id=" + params, true);
+        xhttp.open("GET", "http://localhost:8080/loggedInDoctor?id=" + paramsId, true);
         xhttp.send();
 
     }

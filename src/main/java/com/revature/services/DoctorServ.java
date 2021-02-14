@@ -10,4 +10,6 @@ public interface DoctorServ {
 
 	public Doctor loggedInDoctor(int id);
 
+	public Doctor getDoctorById(int docId);
+
 }

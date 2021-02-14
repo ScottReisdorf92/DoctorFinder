@@ -8,5 +8,5 @@ import com.revature.entities.Availability;
 @Repository
 public interface AvailabilityRepo extends CrudRepository<Availability, Integer>{
 	
-	
+	public Availability getAvailabiltyByDoctorId(int doctorId);
 }

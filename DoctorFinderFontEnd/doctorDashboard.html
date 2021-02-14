@@ -15,6 +15,21 @@
     <div class="container">
         <table id="infoTable"></table>
     </div>
+    <!-- placeholder, this is where the calendar appears -->
+    <div id="dp"></div>
+
+    <!-- DayPilot Pro library-->
+    <script src="daypilot-all.min.js"></script>
+
+    <!-- basic calendar config -->
+    <script>
+        var dp = new DayPilot.Calendar("dp");
+        dp.viewType = "Week";
+        dp.startDate = "2021-02-14";
+        dp.init();
+        dp.rows.load("/loadAvailability");
+
+    </script>
 
 </body>
 <script>

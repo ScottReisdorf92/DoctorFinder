@@ -1,6 +1,6 @@
 package com.revature.entities;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import javax.persistence.Column;
@@ -25,10 +25,10 @@ public class Availability {
 	@GeneratedValue(generator = "AVAILABILITY_ID_SEQ", strategy = GenerationType.SEQUENCE)
 	private int availId; // Primary Key
 	
-	@Column(name = "date")
-	private LocalDate date;
-	@Column(name = "time")
-	private LocalTime time;
+	@Column(name = "start_time", columnDefinition = "TIMESTAMP")
+	private LocalDateTime start;
+	@Column(name = "end_time", columnDefinition = "TIMESTAMP")
+	private LocalDateTime end;
 	
 	
 	//foreign keys
@@ -40,5 +40,80 @@ public class Availability {
 	@ManyToOne
 	@JoinColumn(name = "doc_id")
 	private Doctor doctorId;
+
+
+	// CONSTRUCTORS //
+	public Availability() {
+		super();
+	}
+
+	
+	public Availability(int availId, LocalDateTime start, LocalDateTime end, Specialty specialtyId, Doctor doctorId) {
+		super();
+		this.availId = availId;
+		this.start = start;
+		this.end = end;
+		this.specialtyId = specialtyId;
+		this.doctorId = doctorId;
+	}
+
+
+	// GETTERS AND SETTERS // 
+	public int getAvailId() {
+		return availId;
+	}
+
+
+	public void setAvailId(int availId) {
+		this.availId = availId;
+	}
+
+	
+
+
+	public LocalDateTime getStart() {
+		return start;
+	}
+
+
+	public void setStart(LocalDateTime start) {
+		this.start = start;
+	}
+
+
+	public LocalDateTime getEnd() {
+		return end;
+	}
+
+
+	public void setEnd(LocalDateTime end) {
+		this.end = end;
+	}
+
+
+	public Specialty getSpecialtyId() {
+		return specialtyId;
+	}
+
+
+	public void setSpecialtyId(Specialty specialtyId) {
+		this.specialtyId = specialtyId;
+	}
+
+
+	public Doctor getDoctorId() {
+		return doctorId;
+	}
+
+
+	public void setDoctorId(Doctor doctorId) {
+		this.doctorId = doctorId;
+	}
+	
+	
+	
+	
+	
+	
 	
 }

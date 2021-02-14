@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.entities.Doctor;
@@ -31,6 +32,8 @@ public class DoctorControllerImpl implements DoctorController {
 	}
 	
 
+	@Override
+	@CrossOrigin
 	@PostMapping(value = "/doctorLogin", consumes = "application/json", produces = "application/json")
 	public Doctor doctorLogin(@RequestBody Doctor doctor, HttpServletResponse response) {
 		System.out.println(doctor);
@@ -47,17 +50,11 @@ public class DoctorControllerImpl implements DoctorController {
 	@Override
 	@CrossOrigin
 	@GetMapping(value = "/loggedInDoctor", produces = "application/json")
-	public Doctor loggedInDoctor(HttpServletRequest request) {
-		Cookie[] cookies = request.getCookies();
-		if(cookies != null) {
-			for (Cookie c : cookies) {
-				if (c.getName().equals("doctorEmail")) {
-					return ds.loggedInDoctor(c.getValue());
-				}
-			}
-		}
+	public Doctor loggedInDoctor(@RequestParam(required = true) String id) {
+		System.out.println(id);
+		int inputId = Integer.parseInt(id);
 		
-		return null;
+	        return ds.loggedInDoctor(inputId);
 	}
 
 	

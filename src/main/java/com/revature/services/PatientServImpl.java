@@ -22,8 +22,8 @@ public class PatientServImpl implements PatientServ {
 	}
 
 	@Override
-	public Patient loggedInPatient(String email) {
-		return patRepo.getPatientByEmail(email);
+	public Patient loggedInPatient(int id) {
+		return patRepo.findById(id).get();
 	}
 	
 	@Override

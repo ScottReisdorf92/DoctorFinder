@@ -11,7 +11,7 @@ public interface PatientController {
 	
 	public Patient patientLogin(Patient patient, HttpServletResponse response);
 	
-	public Patient loggedInPatient(HttpServletRequest request);
+	public Patient loggedInPatient(String input);
 
 	public boolean addPatient(@RequestBody Patient p);
 

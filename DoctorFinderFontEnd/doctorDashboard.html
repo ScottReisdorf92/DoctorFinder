@@ -26,7 +26,7 @@
             if (this.readyState == 4 && this.status == 200) {
                 doctor = JSON.parse(this.responseText);
                 console.log(doctor);
-                docId = doctor.doctorId;
+                docId = doctor.docId;
                 console.log("docId: " + docId);
 
 
@@ -56,7 +56,15 @@
 
             }
         }
-        xhttp.open("GET", "http://localhost:8080/loggedInDoctor", true);
+
+        // getting the whole queryurl
+        let parameter = window.location.search;
+        // splitting the parameters from the querystring
+        let urlparam = new URLSearchParams(parameter);
+        // getting the id from the queryurl
+        let params = urlparam.get("id");
+
+        xhttp.open("GET", "http://localhost:8080/loggedInDoctor?id=" + params, true);
         xhttp.send();
 
     }

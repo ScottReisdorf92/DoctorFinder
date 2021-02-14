@@ -8,6 +8,6 @@ public interface DoctorServ {
 
 	public Doctor doctorLogin(Doctor doctor);
 
-	public Doctor loggedInDoctor(String email);
+	public Doctor loggedInDoctor(int id);
 
 }

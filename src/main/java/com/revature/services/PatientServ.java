@@ -6,7 +6,7 @@ public interface PatientServ {
 	
 	Patient patientLogin(Patient patient);
 	
-	public Patient loggedInPatient(String email);
+	public Patient loggedInPatient(int id);
 
 	boolean addPatient(Patient p);
 	

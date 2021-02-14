@@ -30,8 +30,8 @@ public class DoctorServImpl implements DoctorServ {
 	}
 
 	@Override
-	public Doctor loggedInDoctor(String email) {
-		return dr.getDoctorByEmail(email);
+	public Doctor loggedInDoctor(int id) {
+		return dr.findById(id).get();
 	}
 
 	

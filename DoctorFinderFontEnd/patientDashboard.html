@@ -24,6 +24,7 @@
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
+                console.log(this.responseText);
                 patient = JSON.parse(this.responseText);
                 console.log(patient);
                 patId = patient.patientId;
@@ -59,7 +60,15 @@
 
             }
         }
-        xhttp.open("GET", "http://localhost:8080/loggedInPatient", true);
+
+        // getting the whole queryurl
+        let parameter = window.location.search;
+        // splitting the parameters from the querystring
+        let urlparam = new URLSearchParams(parameter);
+        // getting the id from the queryurl
+        let params = urlparam.get("id");
+
+        xhttp.open("GET", "http://localhost:8080/loggedInPatient?id=" + params, true);
         xhttp.send();
 
     }

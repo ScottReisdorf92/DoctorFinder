@@ -69,6 +69,7 @@
 
                 let doc = JSON.parse(this.responseText);
 
+                window.location.href = `./doctorDashboard.html?id=${doc.docId}`;
 
                 // let information = `<h3>Welcome ${employee.firstName}!</h3><br>
                 //                 <button class="btn btn-primary" onclick="window.location.href='http://localhost:8080/DoctorFinder/doctorDashboard.html'"></button>`
@@ -104,6 +105,7 @@
                 console.log(this.responseText);
 
                 let patient = JSON.parse(this.responseText);
+                window.location.href = `./patientDashboard.html?id=${patient.patientId}`;
 
 
                 // let information = `<h3>Welcome ${employee.firstName}!</h3><br>

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.entities.Patient;
@@ -31,24 +32,17 @@ public class PatientControllerImpl implements PatientController {
 			cookie.setSecure(true);
 			response.addCookie(cookie);
 		}
-		
 		return foundPatient;
 	}
 
 	@Override
 	@CrossOrigin
 	@GetMapping(value = "/loggedInPatient", produces = "application/json")
-	public Patient loggedInPatient(HttpServletRequest request) {
+	public Patient loggedInPatient(@RequestParam(required = true) String id) {
+		System.out.println(id);
+		int inputId = Integer.parseInt(id);
 		
-		 Cookie[] cookies = request.getCookies();
-	        if(cookies != null) {
-	            for (Cookie c : cookies) {
-	                if (c.getName().equals("patientEmail")) {
-	                    return patServ.loggedInPatient(c.getValue());
-	                }
-	            }
-	        }
-	        return null;
+	        return patServ.loggedInPatient(inputId);
 	}
 	
 

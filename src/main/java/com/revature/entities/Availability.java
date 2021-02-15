@@ -23,7 +23,7 @@ public class Availability {
 	@Column(updatable = false, name = "availability_id")
 	@SequenceGenerator(sequenceName = "AVAILABILITY_ID_SEQ", name = "AVAILABILITY_ID_SEQ", allocationSize = 1)
 	@GeneratedValue(generator = "AVAILABILITY_ID_SEQ", strategy = GenerationType.SEQUENCE)
-	private int availId; // Primary Key
+	private int id; // Primary Key
 	
 	@Column(name = "start_time", columnDefinition = "TIMESTAMP")
 	private LocalDateTime start;
@@ -40,7 +40,7 @@ public class Availability {
 	@ManyToOne
 	@JoinColumn(name = "doc_id")
 	private Doctor doctorId;
-
+	
 
 	// CONSTRUCTORS //
 	public Availability() {
@@ -48,9 +48,9 @@ public class Availability {
 	}
 
 	
-	public Availability(int availId, LocalDateTime start, LocalDateTime end, Specialty specialtyId, Doctor doctorId) {
+	public Availability(int id, LocalDateTime start, LocalDateTime end, Specialty specialtyId, Doctor doctorId) {
 		super();
-		this.availId = availId;
+		this.id = id;
 		this.start = start;
 		this.end = end;
 		this.specialtyId = specialtyId;
@@ -59,13 +59,13 @@ public class Availability {
 
 
 	// GETTERS AND SETTERS // 
-	public int getAvailId() {
-		return availId;
+	public int getid() {
+		return id;
 	}
 
 
-	public void setAvailId(int availId) {
-		this.availId = availId;
+	public void setid(int id) {
+		this.id = id;
 	}
 
 	
@@ -113,7 +113,7 @@ public class Availability {
 
 	@Override
 	public String toString() {
-		return "Availability [availId=" + availId + ", start=" + start + ", end=" + end + ", specialtyId=" + specialtyId
+		return "Availability [id=" + id + ", start=" + start + ", end=" + end + ", specialtyId=" + specialtyId
 				+ ", doctorId=" + doctorId + "]";
 	}
 	

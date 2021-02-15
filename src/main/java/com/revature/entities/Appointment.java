@@ -1,5 +1,7 @@
 package com.revature.entities;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,11 +20,11 @@ public class Appointment {
 	@Column(updatable = false, name = "appt_id")
 	@GeneratedValue(generator = "APPT_ID_SEQ", strategy = GenerationType.SEQUENCE)
 	@SequenceGenerator(name = "APPT_ID_SEQ", sequenceName = "APPT_ID_SEQ", allocationSize = 1)
-	private int apptId;
-	@Column(name = "date")
-	private String date;
-	@Column(name = "time")
-	private String time;
+	private int id;
+	@Column(name = "start_time")
+	private LocalDateTime start;
+	@Column(name = "end_time")
+	private LocalDateTime end;
 	@ManyToOne
 	@JoinColumn(name = "doc_id")
 	private Doctor docId;
@@ -31,53 +33,64 @@ public class Appointment {
 	private Patient patientId;
 	@Column(name = "doc_notes")
 	private String docNotes;
+	@Column(name = "appt_reason")
+	private String text;
 	
-
 	public Appointment() {
 		super();
 	}
 
-	public Appointment(String date, String time, Doctor docId, Patient patientId, String docNotes) {
+	public Appointment(LocalDateTime start, LocalDateTime end, Doctor docId, Patient patientId, String docNotes, String text) {
 		super();
-		this.date = date;
-		this.time = time;
+		this.start = start;
+		this.end = end;
 		this.docId = docId;
 		this.patientId = patientId;
 		this.docNotes = docNotes;
+		this.text = text;
 	}
 
-	public Appointment(int apptId, String date, String time, Doctor docId, Patient patientId, String docNotes) {
+	public Appointment(int id, LocalDateTime start, LocalDateTime end, Doctor docId, Patient patientId, String docNotes, String text) {
 		super();
-		this.apptId = apptId;
-		this.date = date;
-		this.time = time;
+		this.id = id;
+		this.start = start;
+		this.end = end;
 		this.docId = docId;
 		this.patientId = patientId;
 		this.docNotes = docNotes;
+		this.text = text;
 	}
 
-	public int getApptId() {
-		return apptId;
+	public int getid() {
+		return id;
 	}
 
-	public void setApptId(int apptId) {
-		this.apptId = apptId;
+	public void setid(int id) {
+		this.id = id;
 	}
 
-	public String getDate() {
-		return date;
+	public LocalDateTime getStart() {
+		return start;
 	}
 
-	public void setDate(String date) {
-		this.date = date;
+	public void setStart(LocalDateTime start) {
+		this.start = start;
 	}
 
-	public String getTime() {
-		return time;
+	public LocalDateTime getEnd() {
+		return end;
 	}
 
-	public void setTime(String time) {
-		this.time = time;
+	public void setEnd(LocalDateTime end) {
+		this.end = end;
+	}
+
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
 	}
 
 	public Doctor getDocId() {
@@ -106,7 +119,7 @@ public class Appointment {
 
 	@Override
 	public String toString() {
-		return "Appointment [apptId=" + apptId + ", date=" + date + ", time=" + time + ", docId=" + docId
+		return "Appointment [id=" + id + ", start=" + start + ", end=" + end + ", docId=" + docId
 				+ ", patientId=" + patientId + ", docNotes=" + docNotes + "]";
 	}
 	

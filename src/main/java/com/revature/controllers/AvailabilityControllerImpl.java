@@ -46,7 +46,5 @@ public class AvailabilityControllerImpl implements AvailabilityController {
 		List<Availability> a = availServ.getAvailabilityForCalendar(doc, start, end);
 		return a;
 		
-		// this will take in a doctorId we will then use to grab the doctor from the DB
-		// then we will grab availability by the doctor and return as a List/Iterable
 	}
 }

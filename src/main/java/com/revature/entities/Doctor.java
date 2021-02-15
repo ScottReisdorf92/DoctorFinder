@@ -1,17 +1,23 @@
 package com.revature.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+
 @Entity
-@Table(name = "doctors")
+@Table(name="doctors")
 public class Doctor {
 	
 	//----------------------------------------
@@ -43,17 +49,20 @@ public class Doctor {
 	private String medSchool;
 
 	// Foreign Key Columns
-	@OneToOne
-	@JoinColumn(name = "")
-	private Speciality specalityId;
 
-	@OneToOne
-	@JoinColumn(name = "")
+	@ManyToOne
+	@JoinColumn(name = "specialty_id")
+	private Specialty specialtyId;
+
+	@ManyToOne
+	@JoinColumn(name = "practice_id")
 	private Practice practiceId;
-
-	@OneToOne
-	@JoinColumn(name = "")
-	private Insurance insuranceId;
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "doctors_insurance_accepted",
+			joinColumns = @JoinColumn(name = "doc_id"),
+			inverseJoinColumns = @JoinColumn(name = "insurance_id"))
+	private List<Insurance> insAccepted;
 
 //------------------------------------------------------------------
 	// Constructors
@@ -64,7 +73,7 @@ public class Doctor {
 	
 	
 	public Doctor(int docId, String email, String firstName, String lastName, String password, int yearsInPractice,
-			String description, String medSchool, Speciality specalityId, Practice practiceId, Insurance insuranceId) {
+			String description, String medSchool, Specialty SpecialtyId, Practice practiceId) {
 		super();
 		this.docId = docId;
 		this.email = email;
@@ -74,14 +83,13 @@ public class Doctor {
 		this.yearsInPractice = yearsInPractice;
 		this.description = description;
 		this.medSchool = medSchool;
-		this.specalityId = specalityId;
+		this.specialtyId = SpecialtyId;
 		this.practiceId = practiceId;
-		this.insuranceId = insuranceId;
 	}
 
 
 	public Doctor(String email, String firstName, String lastName, String password, int yearsInPractice,
-			String description, String medSchool, Speciality specalityId, Practice practiceId, Insurance insuranceId) {
+			String description, String medSchool, Specialty SpecialtyId, Practice practiceId) {
 		super();
 		this.email = email;
 		this.firstName = firstName;
@@ -90,9 +98,8 @@ public class Doctor {
 		this.yearsInPractice = yearsInPractice;
 		this.description = description;
 		this.medSchool = medSchool;
-		this.specalityId = specalityId;
+		this.specialtyId = SpecialtyId;
 		this.practiceId = practiceId;
-		this.insuranceId = insuranceId;
 	}
 
 
@@ -181,13 +188,13 @@ public class Doctor {
 	}
 
 
-	public Speciality getSpecalityId() {
-		return specalityId;
+	public Specialty getSpecialtyId() {
+		return specialtyId;
 	}
 
 
-	public void setSpecalityId(Speciality specalityId) {
-		this.specalityId = specalityId;
+	public void setSpecialtyId(Specialty specialtyId) {
+		this.specialtyId = specialtyId;
 	}
 
 
@@ -200,18 +207,6 @@ public class Doctor {
 		this.practiceId = practiceId;
 	}
 
-
-	public Insurance getInsuranceId() {
-		return insuranceId;
-	}
-
-
-	public void setInsuranceId(Insurance insuranceId) {
-		this.insuranceId = insuranceId;
-	}
-
-
-
 	
 //---------------------------------------------------------------------
 	//ToString Method
@@ -221,8 +216,8 @@ public class Doctor {
 	public String toString() {
 		return "Doctor [docId=" + docId + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName
 				+ ", password=" + password + ", yearsInPractice=" + yearsInPractice + ", description=" + description
-				+ ", yearGraduated=" + medSchool + ", specalityId=" + specalityId + ", practiceId=" + practiceId
-				+ ", insuranceId=" + insuranceId + "]";
+				+ ", yearGraduated=" + medSchool + ", SpecialtyId=" + specialtyId + ", practiceId=" + practiceId
+				+ ", insuranceId=" + "]";
 	}
 	
 	

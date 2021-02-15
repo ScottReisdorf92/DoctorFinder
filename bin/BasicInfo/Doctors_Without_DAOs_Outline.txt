@@ -1,0 +1,34 @@
+MVP:
+
+Login / Logout
+
+Have a formal account to make appointments
+
+- Specialist profile
+- User profile
+
+Create a guest user
+- Name, Email, phone number
+- Disclaimer: "if this is an emergency, dont' be dumb. You dumby."
+- Filtering of Doctors -> Availibity 
+- If they choose appointment, communicate with doctor's office and block off avialibity
+- Calendar view of Doctors current appointments
+- Give description of issue if they want
+
+
+Doctor: 
+- "how last minute"
+- Basic access to user info, what they need etc.
+- Credential Section, #years, education, etc.
+
+
+What seems possible:
+- Take care of $ transactions
+- Insurance Info.
+- Leave reviews
+- New appointment with a list of doctors saved
+
+
+Stretch Goal
+- Integrate Google maps
+- Live appointment tracker

@@ -1,17 +1,19 @@
 package com.revature.repositories;
 
+import java.util.List;
+
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import com.revature.entities.Doctor;
 
+@Repository
 public interface DoctorRepo extends CrudRepository<Doctor, Integer>{
-	
-	public Doctor getDoctorById(int doctor_id);
 	
 	public Doctor getDoctorByEmail(String email);
 	
-	public Doctor getDoctorByName(String first_name, String last_name);
+	public List<Doctor> getDoctorsByFirstNameAndLastName(String firstName, String lastName);
 	
-	public Doctor getDoctorBySpecialty(int specialty_id);
+	public List<Doctor> getDoctorsBySpecialtyId(int specialtyId);
 	
 }

@@ -1,0 +1,57 @@
+<html>
+
+<body>
+
+    <p>Logo and Title</p>
+    <p>Welcome new Patient</p>
+
+    <input type="text" id="firstname">First Name
+    <br>
+    <input type="text" id="lastname">Last Name
+    <br>
+    <input type="text" id="email">Email
+    <br>
+    <input type="text" id="pass">Password
+    <br>
+    <input type="text" id="phone">Phone
+    <br>
+    <input type="button" id="submit" onclick="addPatient">Create Account
+    <br>
+    <p id="place">Confirmation</p>
+
+</body>
+
+</html>
+
+
+<script>
+    function addPatient() {
+        let patient = 
+                    {
+                        firstName : document.getElementById("firstname"),
+                        lastName : document.getElementById("lastname"),
+                        email : document.getElementById("email"),
+                        password : document.getElementById("pass"),
+                        phoneNumber : document.getElementById("phone")
+                    }
+
+        console.log(patient);
+
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+
+            if (this.readyState == 4 && this.status == 200) {
+
+                
+                
+
+            }
+        }
+
+
+        xhttp.open("POST", "http://localhost:8080/PatientSignup" , true);
+        xhttp.setRequestHeader("Content-Type", "application/json");
+        xhttp.send(JSON.stringify(patient));
+    }
+    
+</script>

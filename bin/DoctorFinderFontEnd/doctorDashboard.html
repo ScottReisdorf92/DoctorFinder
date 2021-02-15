@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Portal</title>
+
+    <!-- DayPilot Pro library-->
+    <script src="daypilot-all.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="calendar_g.css" /> 
+</head>
+
+<body onload="getLoggedInDoctor()">
+
+    <div class="container">
+        <h1 id="header"></h1>
+    </div>
+    <div class="container">
+        <table id="infoTable"></table>
+    </div>
+    <!-- placeholder, this is where the calendar appears -->
+    <div class="main" style="display: flex;">
+        <div style="margin-right: 10px;">
+            <div id="nav"></div>
+        </div>
+        <div style="flex-grow: 1">
+            <div id="dp"></div>
+        </div>
+    </div>
+
+    
+
+    
+
+</body>
+<script>
+
+    dp;
+
+    function getLoggedInDoctor() {
+
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                doctor = JSON.parse(this.responseText);
+                console.log(doctor);
+                docId = doctor.docId;
+                console.log("docId: " + docId);
+
+
+                let welcomeHeader = `<div class="container"><h1>Welcome ${doctor.firstName}!</h1></div>
+                    <div class="container">
+                    <h3>Here is your Information</h3><br>
+                    </div>`
+
+                let information =
+                    `<thead>
+                <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>${doctor.firstName}</td>
+                <td>${doctor.lastName}</td>
+                <td>${doctor.email}</td>
+            </tr>
+            </tbody>`
+
+                document.getElementById("header").innerHTML = welcomeHeader;
+                document.getElementById("infoTable").innerHTML = information;
+                loadCalendar();
+                loadNav();
+            }
+        }
+
+        // getting the whole queryurl
+        let parameter = window.location.search;
+        // splitting the parameters from the querystring
+        let urlparam = new URLSearchParams(parameter);
+        // getting the id from the queryurl
+        paramsId = urlparam.get("id");
+
+        xhttp.open("GET", "http://localhost:8080/loggedInDoctor?id=" + paramsId, true);
+        xhttp.send();
+
+    }
+
+    //-----Daylight Pro Calendar Stuff-------------------------------------------------------
+    function loadNav () {
+        var nav = new DayPilot.Navigator("nav");
+        nav.showMonths = 3;
+        nav.skipMonths = 3;
+        nav.selectMode = "week";
+        nav.onTimeRangeSelected = function(args) {
+            dp.startDate = args.day;
+            dp.update();
+            dp.events.load("http://localhost:8080/loadAvailability/" + paramsId);
+            loadAppts();
+        };
+        nav.init();
+    }
+    
+    function loadCalendar () {
+        dp = new DayPilot.Calendar("dp");
+        dp.viewType = "Week";
+        dp.startDate = "2021-02-14";
+        //dp.theme = "calendar_g";
+        dp.init();
+
+        dp.eventsLoadMethod = "GET";
+        dp.eventMoveHandling = "disabled";
+        dp.onEventClicked = function (args) {
+            alert("clicked: " + args.e.id());
+        }
+        dp.events.load("http://localhost:8080/loadAvailability/" + paramsId);
+        //loadAvails();
+        loadAppts();
+    }
+    
+
+    function loadAppts () {
+        let xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log(this.responseText);
+                appts = JSON.parse(this.responseText);
+                console.log(appts);
+                //dp.events.list.concat(appts);
+                appts.forEach(element => {
+                    dp.events.add(element);
+                });
+                dp.update();
+            }
+        }
+
+        xhttp.open("GET", "http://localhost:8080/loadAppointments/" + paramsId, true);
+        xhttp.send();
+    }
+
+    // function loadAppts () {
+    //     let xhttp = new XMLHttpRequest();
+
+    //     xhttp.onreadystatechange = function () {
+    //         if (this.readyState == 4 && this.status == 200) {
+    //             console.log(this.responseText);
+    //             avails = JSON.parse(this.responseText);
+    //             dp.events.list = avails;
+    //             dp.update();
+    //         }
+    //     }
+
+    //     xhttp.open("GET", "http://localhost:8080/loadAppointments/" + paramsId, true);
+    //     xhttp.send();
+    // }
+</script>
+
+</html>

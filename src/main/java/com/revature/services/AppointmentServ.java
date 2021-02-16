@@ -1,6 +1,5 @@
 package com.revature.services;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import com.revature.entities.Appointment;
@@ -14,5 +13,6 @@ public interface AppointmentServ {
 	public List<Appointment> getAllAppointmentsByPatientId(Patient patient);
 	
 	public Appointment bookAppointment(Appointment appt);
+	
 	
 }

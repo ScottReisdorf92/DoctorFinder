@@ -26,14 +26,14 @@
 
 <script>
     function addPatient() {
-        let patient = 
-                    {
-                        firstName : document.getElementById("firstname"),
-                        lastName : document.getElementById("lastname"),
-                        email : document.getElementById("email"),
-                        password : document.getElementById("pass"),
-                        phoneNumber : document.getElementById("phone")
-                    }
+        let patient =
+        {
+            firstName: document.getElementById("firstname"),
+            lastName: document.getElementById("lastname"),
+            email: document.getElementById("email"),
+            password: document.getElementById("pass"),
+            phoneNumber: document.getElementById("phone")
+        }
 
         console.log(patient);
 
@@ -42,16 +42,16 @@
 
             if (this.readyState == 4 && this.status == 200) {
 
-                
-                
+                window.location.href = "http://localhost:8080/patientDashboard.html"
+
 
             }
         }
 
 
-        xhttp.open("POST", "http://localhost:8080/PatientSignup" , true);
+        xhttp.open("POST", "http://localhost:8080/PatientSignup", true);
         xhttp.setRequestHeader("Content-Type", "application/json");
         xhttp.send(JSON.stringify(patient));
     }
-    
+
 </script>

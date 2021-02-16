@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patient Portal</title>
+    <script src="daypilot-all.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="calendar_g.css" />
 </head>
 
 <body onload="getLoggedInPatient()">
@@ -15,9 +17,27 @@
     <div class="container">
         <table id="infoTable"></table>
     </div>
+    <div class="container">
+        <h3 id="h3Appt"></h3>
+    </div>
+    <div>
+        <button onclick="BookAppt()">Book an Appointment!</button>
+    </div>
+
+    <div class="main" style="display: flex;">
+        <div style="margin-right: 10px;">
+            <div id="nav"></div>
+        </div>
+        <div style="flex-grow: 1">
+            <div id="dp"></div>
+        </div>
+    </div>
+
 
 </body>
 <script>
+
+    dp;
 
     function getLoggedInPatient() {
 
@@ -57,6 +77,8 @@
                 document.getElementById("header").innerHTML = welcomeHeader;
                 document.getElementById("infoTable").innerHTML = information;
 
+                loadCalendar();
+                loadNav();
 
             }
         }
@@ -66,12 +88,47 @@
         // splitting the parameters from the querystring
         let urlparam = new URLSearchParams(parameter);
         // getting the id from the queryurl
-        let params = urlparam.get("id");
+        paramsId = urlparam.get("id");
 
-        xhttp.open("GET", "http://localhost:8080/loggedInPatient?id=" + params, true);
+        xhttp.open("GET", "http://localhost:8080/loggedInPatient?id=" + paramsId, true);
         xhttp.send();
 
     }
+
+    function loadNav() {
+        var nav = new DayPilot.Navigator("nav");
+        nav.showMonths = 3;
+        nav.skipMonths = 3;
+        nav.selectMode = "week";
+        nav.onTimeRangeSelected = function (args) {
+            dp.startDate = args.day;
+            dp.update();
+            dp.events.load("http://localhost:8080/loadPatientAppt/" + paramsId);
+        };
+        nav.init();
+    }
+
+    function loadCalendar() {
+        dp = new DayPilot.Calendar("dp");
+        dp.viewType = "Week";
+        dp.startDate = "2021-02-14";
+        //dp.theme = "calendar_g";
+        dp.init();
+
+        dp.eventsLoadMethod = "GET";
+        dp.eventMoveHandling = "disabled";
+        dp.onEventClicked = function (args) {
+            alert("clicked: " + args.e.id());
+        }
+        dp.events.load("http://localhost:8080/loadPatientAppt/" + paramsId);
+        //loadAvails();
+    }
+
+    function BookAppt() {
+        window.location.href = `./patientCreateAppt.html?id=${paramsId}`;
+    }
+
+    
 /* This will be super useful later for creating patient appointments and adding them
     Will need to add specific fields to e being created
     

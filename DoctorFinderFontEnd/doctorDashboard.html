@@ -8,7 +8,7 @@
 
     <!-- DayPilot Pro library-->
     <script src="daypilot-all.min.js"></script>
-    <link type="text/css" rel="stylesheet" href="calendar_g.css" /> 
+    <link type="text/css" rel="stylesheet" href="calendar_g.css" />
 </head>
 
 <body onload="getLoggedInDoctor()">
@@ -29,9 +29,7 @@
         </div>
     </div>
 
-    
 
-    
 
 </body>
 <script>
@@ -90,12 +88,12 @@
     }
 
     //-----Daylight Pro Calendar Stuff-------------------------------------------------------
-    function loadNav () {
+    function loadNav() {
         var nav = new DayPilot.Navigator("nav");
         nav.showMonths = 3;
         nav.skipMonths = 3;
         nav.selectMode = "week";
-        nav.onTimeRangeSelected = function(args) {
+        nav.onTimeRangeSelected = function (args) {
             dp.startDate = args.day;
             dp.update();
             dp.events.load("http://localhost:8080/loadAvailability/" + paramsId);
@@ -103,8 +101,8 @@
         };
         nav.init();
     }
-    
-    function loadCalendar () {
+
+    function loadCalendar() {
         dp = new DayPilot.Calendar("dp");
         dp.viewType = "Week";
         dp.startDate = "2021-02-14";
@@ -120,9 +118,9 @@
         //loadAvails();
         loadAppts();
     }
-    
 
-    function loadAppts () {
+
+    function loadAppts() {
         let xhttp = new XMLHttpRequest();
 
         xhttp.onreadystatechange = function () {

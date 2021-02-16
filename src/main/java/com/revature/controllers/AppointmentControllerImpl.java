@@ -14,6 +14,7 @@ import com.revature.entities.Appointment;
 import com.revature.entities.Doctor;
 import com.revature.entities.Patient;
 import com.revature.services.AppointmentServ;
+import com.revature.services.AvailabilityServ;
 import com.revature.services.DoctorServ;
 import com.revature.services.PatientServ;
 
@@ -29,7 +30,8 @@ public class AppointmentControllerImpl implements AppointmentController {
 	
 	@Autowired
 	private PatientServ patServ;
-
+	
+	
 	@Override
 	@CrossOrigin
 	@GetMapping(value = "/loadAppointments/{id}")
@@ -63,4 +65,8 @@ public class AppointmentControllerImpl implements AppointmentController {
 		System.out.println("returned appt " + a);
 		return a;
 	}
+
+	
+	
+	
 }

@@ -14,4 +14,9 @@ public interface AvailabilityServ {
 	public List<Availability> getAvailabilityForCalendar(Doctor docId, LocalDateTime start, LocalDateTime end);
 
 	public List<Availability> getAvailabilityBySpecialty(Specialty spec, LocalDateTime start, LocalDateTime end);
+
+	public boolean cancelAvailibity(String id);
+	
+	public Availability addAvailability(Availability a);
+
 }

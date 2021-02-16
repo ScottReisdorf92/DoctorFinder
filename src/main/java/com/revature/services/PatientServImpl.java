@@ -35,5 +35,10 @@ public class PatientServImpl implements PatientServ {
 		}
 		return false;
 	}
+
+	@Override
+	public Patient getPatientById(int id) {
+		return patRepo.findById(id).get();
+	}
 }
 	

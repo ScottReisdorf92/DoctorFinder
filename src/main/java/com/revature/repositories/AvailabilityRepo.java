@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.revature.entities.Availability;
 import com.revature.entities.Doctor;
+import com.revature.entities.Specialty;
 
 @Repository
 public interface AvailabilityRepo extends CrudRepository<Availability, Integer>{
@@ -17,4 +18,6 @@ public interface AvailabilityRepo extends CrudRepository<Availability, Integer>{
 	
 	//@Query("SELECT * FROM availability WHERE doc_id = :doctorId AND start_time >= :start AND end_time < :end")
 	public List<Availability> findAllByDoctorIdAndStartAfterAndEndBefore(Doctor doctorId, LocalDateTime start, LocalDateTime end);
+	
+	public List<Availability> findAllBySpecialtyIdAndStartAfterAndEndBefore(Specialty specialtyId, LocalDateTime start, LocalDateTime end);
 }

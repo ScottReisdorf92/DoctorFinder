@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.revature.entities.Availability;
 import com.revature.entities.Doctor;
+import com.revature.entities.Specialty;
 import com.revature.repositories.AvailabilityRepo;
 
 @Service
@@ -28,6 +29,13 @@ public class AvailabilityServImpl implements AvailabilityServ {
 	public List<Availability> getAvailabilityForCalendar(Doctor docId, LocalDateTime start, LocalDateTime end) {
 		
 		List<Availability> a = availRepo.findAllByDoctorIdAndStartAfterAndEndBefore(docId, start, end);
+		System.out.println(a);
+		return a;
+	}
+
+	@Override
+	public List<Availability> getAvailabilityBySpecialty(Specialty spec, LocalDateTime start, LocalDateTime end) {
+		List<Availability> a = availRepo.findAllBySpecialtyIdAndStartAfterAndEndBefore(spec, start, end);
 		System.out.println(a);
 		return a;
 	}

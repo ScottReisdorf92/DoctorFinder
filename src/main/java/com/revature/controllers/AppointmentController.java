@@ -14,4 +14,8 @@ public interface AppointmentController {
 
 	public List<Appointment> loadAppointments(String id);
 	
+	public List<Appointment> loadPatientAppointments(String id);
+	
+	public Appointment bookAppointment(Appointment appt);
+	
 }

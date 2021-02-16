@@ -10,4 +10,6 @@ public interface PatientServ {
 
 	boolean addPatient(Patient p);
 	
+	public Patient getPatientById(int id);
+	
 }

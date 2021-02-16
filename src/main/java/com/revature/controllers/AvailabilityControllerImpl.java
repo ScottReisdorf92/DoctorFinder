@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.entities.Availability;
 import com.revature.entities.Doctor;
+import com.revature.entities.Specialty;
 import com.revature.services.AvailabilityServ;
 import com.revature.services.DoctorServ;
+import com.revature.services.SpecialtyServ;
 
 @RestController
 public class AvailabilityControllerImpl implements AvailabilityController {
@@ -24,6 +26,8 @@ public class AvailabilityControllerImpl implements AvailabilityController {
 	private AvailabilityServ availServ;
 	@Autowired
 	private DoctorServ ds;
+	@Autowired
+	private SpecialtyServ specServ;
 
 	@Override
 	@CrossOrigin
@@ -46,5 +50,16 @@ public class AvailabilityControllerImpl implements AvailabilityController {
 		List<Availability> a = availServ.getAvailabilityForCalendar(doc, start, end);
 		return a;
 		
+	}
+
+	@Override
+	@CrossOrigin
+	@GetMapping(value = "/availabiltyBySpecialty/{id}")
+	public List<Availability> getAvailBySpecialty(LocalDateTime start, LocalDateTime end, @PathVariable("id") String specialtyId) {
+		System.out.println(specialtyId);
+		int specId = Integer.parseInt(specialtyId);
+		Specialty spec = specServ.getSpecialtyBySpecialtyId(specId);
+		List<Availability> a = availServ.getAvailabilityBySpecialty(spec, start, end);
+		return a;
 	}
 }

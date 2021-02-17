@@ -9,6 +9,8 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -62,4 +64,24 @@ public class AvailabilityControllerImpl implements AvailabilityController {
 		List<Availability> a = availServ.getAvailabilityBySpecialty(spec, start, end);
 		return a;
 	}
+	
+	@Override
+	@CrossOrigin
+	@GetMapping(value = "/cancelAvailability/{id}")
+	public boolean cancelAvailability(@PathVariable("id") String id) {
+		System.out.println(id);
+		availServ.cancelAvailibity(id);
+		return true;
+	}
+	
+	@Override
+	@CrossOrigin
+	@PostMapping(value = "/addAvailability", consumes= "application/json", produces = "application/json")
+	public boolean addAvailability(@RequestBody Availability a) {
+		System.out.println(a.toString());
+		availServ.addAvailability(a);
+		return true;
+	}
+	
+	
 }

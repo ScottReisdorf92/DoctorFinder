@@ -30,6 +30,8 @@ public class AppointmentServImpl implements AppointmentServ {
 	public Appointment bookAppointment(Appointment appt) {
 		return apptRepo.save(appt);
 	}
+	
+	
 
 	@Override
 	public boolean deleteAppointment(int id) {

@@ -1,6 +1,5 @@
 package com.revature.repositories;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
@@ -15,6 +14,6 @@ public interface AppointmentRepo extends CrudRepository<Appointment, Integer>{
 
 	List<Appointment> findAllByDocId(Doctor doc);
 	List<Appointment> findAllByPatientId(Patient patient);
-
+	
 	
 }

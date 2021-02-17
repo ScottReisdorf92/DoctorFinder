@@ -9,6 +9,7 @@
     <!-- DayPilot Pro library-->
     <script src="daypilot-all.min.js"></script>
     <link type="text/css" rel="stylesheet" href="calendar_g.css" />
+    <link type="text/css" rel="Stylesheet" href="./CSS/patientCreateAppt.css">
 </head>
 
 <body onload="getLoggedInDoctor()">
@@ -29,12 +30,42 @@
         </div>
     </div>
 
+    <div id="myModal" class="modal">
 
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h5 id="confirmation"></h5>
+            <button id="cancelAvailability" onclick="cancelAvailability()">Cancel Availability</button>
+        </div>
+
+    </div>
 
 </body>
 <script>
+    dp; //Calendar Object for the page (day pilot)
 
-    dp;
+    //
+    var modal = document.getElementById("myModal");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    function modalDisplay() {
+        modal.style.display = "block";
+    }
 
     function getLoggedInDoctor() {
 
@@ -109,11 +140,45 @@
         //dp.theme = "calendar_g";
         dp.init();
 
+
+        dp.onTimeRangeSelected = function (args) {
+            var name = prompt("Enter Confirm, to Confirm", "Confirm");
+            dp.clearSelection();
+            if (!name || name != "Confirm") return;
+            
+            var e = new DayPilot.Event({
+                start: args.start,
+                end: args.end
+                
+            });
+            
+            console.log(e.data.start);
+            console.log(e.data.end);
+            console.log(e);
+            addAvailability(e);
+
+            // dp.events.add(e);
+            dp.message("Created");
+        };
+
+
         dp.eventsLoadMethod = "GET";
         dp.eventMoveHandling = "disabled";
         dp.onEventClicked = function (args) {
-            alert("clicked: " + args.e.id());
+
+            dp.events.list.forEach(element => {
+
+                if (element.id == args.e.id() && element.patientId == null) {
+                    a = element;
+                    console.log(a);
+                }
+
+            });
+
+            modalDisplay();
+
         }
+
         dp.events.load("http://localhost:8080/loadAvailability/" + paramsId);
         //loadAvails();
         loadAppts();
@@ -133,12 +198,80 @@
                     dp.events.add(element);
                 });
                 dp.update();
+
             }
         }
 
         xhttp.open("GET", "http://localhost:8080/loadAppointments/" + paramsId, true);
         xhttp.send();
     }
+
+    function cancelAvailability() {
+        document.getElementById("confirmation").innerHTML = "";
+        let xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function () {
+
+            if (this.readyState == 4 && this.status == 200) {
+                console.log(this.responseText);
+                cancelAvailabilitySuccess = JSON.parse(this.responseText);
+                console.log(cancelAvailabilitySuccess);
+                document.getElementById("confirmation").innerHTML = "Availability Cancelled";
+                dp.update();
+                window.location.reload();
+
+                setTimeout(() => {
+
+                }, 500);
+
+            }
+
+        }
+
+        xhttp.open("GET", "http://localhost:8080/cancelAvailability/" + a.id, true);
+        xhttp.send();
+
+    }
+
+
+    function addAvailability(e) {
+
+        // let reason = document.getElementById("reason").value;
+
+        let availability = {
+            start: e.data.start,
+            end: e.data.end,
+            doctorId: doctor,
+            specialtyId: doctor.specialtyId
+        }
+
+        let xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function () {
+
+            if (this.readyState == 4 && this.status == 200) {
+                console.log(this.responseText);
+                confirmationAppt = JSON.parse(this.responseText);
+                console.log(confirmationAppt);
+
+                document.getElementById("confirmation").innerHTML = "Availability Confirmed!";
+                setTimeout(() => {
+                    
+                }, 1500);
+
+                window.location.reload();
+
+            }
+        }
+        
+        xhttp.open("POST", "http://localhost:8080/addAvailability");
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.send(JSON.stringify(availability));
+
+        //alert("clicked: " + args.e.id());
+    }
+
+
 
     // function loadAppts () {
     //     let xhttp = new XMLHttpRequest();

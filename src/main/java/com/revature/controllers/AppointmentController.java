@@ -18,4 +18,6 @@ public interface AppointmentController {
 	
 	public Appointment bookAppointment(Appointment appt);
 	
+	public boolean deleteAppointment(int id);
+	
 }

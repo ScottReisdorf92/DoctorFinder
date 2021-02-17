@@ -1,13 +1,11 @@
 package com.revature.services;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.entities.Appointment;
-import com.revature.entities.Availability;
 import com.revature.entities.Doctor;
 import com.revature.entities.Patient;
 import com.revature.repositories.AppointmentRepo;
@@ -31,6 +29,17 @@ public class AppointmentServImpl implements AppointmentServ {
 	@Override
 	public Appointment bookAppointment(Appointment appt) {
 		return apptRepo.save(appt);
+	}
+
+	@Override
+	public boolean deleteAppointment(int id) {
+		try {
+			apptRepo.deleteById(id);
+			return true;
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 }

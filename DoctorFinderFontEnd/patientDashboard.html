@@ -7,6 +7,7 @@
     <title>Patient Portal</title>
     <script src="daypilot-all.min.js"></script>
     <link type="text/css" rel="stylesheet" href="calendar_g.css" />
+    <link type="text/css" rel="stylesheet" href="./Modal/Modal.css"/>
 </head>
 
 <body onload="getLoggedInPatient()">
@@ -34,12 +35,20 @@
     </div>
 
 
+    
+
+<div id="modalId" class="modal">
+</div>
+
 </body>
 <script>
+    
 
     dp;
 
     function getLoggedInPatient() {
+
+       
 
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
@@ -82,13 +91,14 @@
 
             }
         }
-
-        // getting the whole queryurl
-        let parameter = window.location.search;
+            // getting the whole queryurl
+            let parameter = window.location.search;
         // splitting the parameters from the querystring
         let urlparam = new URLSearchParams(parameter);
         // getting the id from the queryurl
         paramsId = urlparam.get("id");
+
+
 
         xhttp.open("GET", "http://localhost:8080/loggedInPatient?id=" + paramsId, true);
         xhttp.send();
@@ -96,6 +106,7 @@
     }
 
     function loadNav() {
+       
         var nav = new DayPilot.Navigator("nav");
         nav.showMonths = 3;
         nav.skipMonths = 3;
@@ -109,6 +120,7 @@
     }
 
     function loadCalendar() {
+      
         dp = new DayPilot.Calendar("dp");
         dp.viewType = "Week";
         dp.startDate = "2021-02-14";
@@ -117,16 +129,61 @@
 
         dp.eventsLoadMethod = "GET";
         dp.eventMoveHandling = "disabled";
+
         dp.onEventClicked = function (args) {
-            alert("clicked: " + args.e.id());
+            console.log("clicked: " + args.e.id());
+            console.log("clicked: " + args.e.text());
+
+            document.getElementById('modalId').innerHTML= `<span onclick="document.getElementById('modalId').style.display='none'" class="close" title="Close Modal">&times;</span>
+  <div class="modal-content">
+    <div class="container">
+      <h1>Appointment for ${args.e.text()}</h1>
+      <p>Please Select an Action</p>
+
+      <div class="clearfix">
+        <button type="button" class="cancelbtn">Update</button>
+        <button type="button" class="deletebtn" onclick="deleteApp(${args.e.id()})">Delete</button>
+      </div>
+    </div>
+</div>`
+// deleteApp() function starts from line# 164
+document.getElementById('modalId').style.display='block'
+
+
         }
         dp.events.load("http://localhost:8080/loadPatientAppt/" + paramsId);
         //loadAvails();
     }
 
     function BookAppt() {
+        
         window.location.href = `./patientCreateAppt.html?id=${paramsId}`;
     }
+
+    //Delete Appointment Function
+
+    function deleteApp(appId){
+        
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function(){
+
+            if(this.readyState == 4 && this.status == 200){
+
+                console.log(this.responseText)
+
+      
+                window.location.href="./patientDashboard.html?id=" + paramsId;
+
+       
+                
+            }
+        }
+
+        xhttp.open("DELETE","http://localhost:8080/deleteappointment/"+appId, true);
+        xhttp.send();
+
+    }
+    // Delete Appointment Function End
 
     
 /* This will be super useful later for creating patient appointments and adding them
@@ -157,5 +214,6 @@
     dp.init();
 */
 </script>
+<script src="./Modal/Modal.js"></script>
 
 </html>

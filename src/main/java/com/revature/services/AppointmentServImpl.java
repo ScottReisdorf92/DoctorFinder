@@ -33,4 +33,15 @@ public class AppointmentServImpl implements AppointmentServ {
 	
 	
 
+	@Override
+	public boolean deleteAppointment(int id) {
+		try {
+			apptRepo.deleteById(id);
+			return true;
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
 }

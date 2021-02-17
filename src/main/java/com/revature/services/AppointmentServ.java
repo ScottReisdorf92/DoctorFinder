@@ -14,5 +14,7 @@ public interface AppointmentServ {
 	
 	public Appointment bookAppointment(Appointment appt);
 	
+	public boolean deleteAppointment(int id);
+
 	
 }

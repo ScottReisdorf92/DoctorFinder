@@ -159,7 +159,7 @@
             }
         }
 
-        xhttp.open("POST", "http://localhost:8080/bookAppointment");
+        xhttp.open("POST", "http://localhost:8080/bookAppointment?id=" + a.id, true);
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send(JSON.stringify(appointment));
 

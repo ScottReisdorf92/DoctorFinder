@@ -8,7 +8,8 @@
 
     <!-- DayPilot Pro library-->
     <script src="daypilot-all.min.js"></script>
-    <link type="text/css" rel="stylesheet" href="calendar_g.css" />
+    <link type="text/css" rel="stylesheet" href="./CSS/calendar_g.css" />
+    <link type="text/css" rel="stylesheet" href="./CSS/scheduler_8.css" />
     <link type="text/css" rel="Stylesheet" href="./CSS/patientCreateAppt.css">
 </head>
 
@@ -137,7 +138,7 @@
         dp = new DayPilot.Calendar("dp");
         dp.viewType = "Week";
         dp.startDate = "2021-02-14";
-        //dp.theme = "calendar_g";
+        dp.theme = "calendar_g";
         dp.init();
 
 
@@ -241,6 +242,8 @@
         let availability = {
             start: e.data.start,
             end: e.data.end,
+            text: "Availability: " + doctor.firstName + " " + doctor.lastName,
+            backColor: "#86C29C",
             doctorId: doctor,
             specialtyId: doctor.specialtyId
         }

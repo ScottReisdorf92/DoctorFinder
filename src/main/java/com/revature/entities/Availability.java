@@ -29,7 +29,11 @@ public class Availability {
 	private LocalDateTime start;
 	@Column(name = "end_time", columnDefinition = "TIMESTAMP")
 	private LocalDateTime end;
-	
+	@Column(name = "text")
+	private String text;
+
+	@Column(name = "color")
+	private String backColor;
 	
 	//foreign keys
 	@OneToOne
@@ -48,13 +52,15 @@ public class Availability {
 	}
 
 	
-	public Availability(int id, LocalDateTime start, LocalDateTime end, Specialty specialtyId, Doctor doctorId) {
+	public Availability(int id, LocalDateTime start, LocalDateTime end, Specialty specialtyId, Doctor doctorId, String text, String backColor) {
 		super();
 		this.id = id;
 		this.start = start;
 		this.end = end;
 		this.specialtyId = specialtyId;
 		this.doctorId = doctorId;
+		this.text = text;
+		this.backColor = backColor;
 	}
 
 
@@ -89,6 +95,26 @@ public class Availability {
 	public void setEnd(LocalDateTime end) {
 		this.end = end;
 	}
+	
+	public String getText() {
+		return text;
+	}
+
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
+
+	public String getBackColor() {
+		return backColor;
+	}
+
+
+	public void setBackColor(String backColor) {
+		this.backColor = backColor;
+	}
+
 
 
 	public Specialty getSpecialtyId() {

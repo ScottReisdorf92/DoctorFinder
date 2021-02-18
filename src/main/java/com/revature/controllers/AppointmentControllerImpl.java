@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.entities.Appointment;
@@ -31,6 +32,9 @@ public class AppointmentControllerImpl implements AppointmentController {
 	
 	@Autowired
 	private PatientServ patServ;
+	
+	@Autowired
+	private AvailabilityServ availServ;
 	
 	
 	@Override
@@ -60,10 +64,11 @@ public class AppointmentControllerImpl implements AppointmentController {
 	@Override
 	@CrossOrigin
 	@PostMapping(value = "/bookAppointment", produces = "application/json")
-	public Appointment bookAppointment(@RequestBody Appointment appt) {
+	public Appointment bookAppointment(@RequestBody Appointment appt, @RequestParam(required = true) String id) {
 		System.out.println(appt);
 		Appointment a = apptServ.bookAppointment(appt);
 		System.out.println("returned appt " + a);
+		availServ.cancelAvailibity(id);
 		return a;
 	}
 

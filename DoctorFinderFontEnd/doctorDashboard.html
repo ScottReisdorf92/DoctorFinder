@@ -11,24 +11,59 @@
     <link type="text/css" rel="stylesheet" href="./CSS/calendar_g.css" />
     <link type="text/css" rel="stylesheet" href="./CSS/scheduler_8.css" />
     <link type="text/css" rel="Stylesheet" href="./CSS/patientCreateAppt.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link type="text/css" rel="Stylesheet" href="./CSS/dashboard.css">
 </head>
 
 <body onload="getLoggedInDoctor()">
 
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Doctor Finder</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="#">Doctor Dashboard <span class="sr-only">(current)</span></a>
+                <!-- <a class="nav-item nav-link" href="./login.html">Login</a>
+                <a class="nav-item nav-link" href="./PatAccCreate.html">Sign Up</a> -->
+                <a class="nav-item nav-link" href="./About.html">About</a>
+                <a class="nav-item nav-link" href="./Contact.html">Contact Us</a>
+
+            </div>
+        </div>
+    </nav>
+
+
     <div class="container">
+        <div class="border border-3 rounded-3 text-center pb-3 bg-light">
+            <h1 id="header"></h1>
+            <div id="tableContainer">
+                <table class="table table-hover" id="infoTable"></table>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="container">
+        <div class="border border-3 rounded-3 text-center pb-3 bg-light"></div>
         <h1 id="header"></h1>
-    </div>
-    <div class="container">
-        <table id="infoTable"></table>
-    </div>
-    <!-- placeholder, this is where the calendar appears -->
-    <div class="main" style="display: flex;">
-        <div style="margin-right: 10px;">
-            <div id="nav"></div>
+        <table class="table table-hover" id="infoTable"></table>
+    </div> -->
+
+
+    <div id="calenderContainer" class="container">
+        <!-- placeholder, this is where the calendar appears -->
+        <div class="main" style="display: flex;">
+            <div style="margin-right: 10px;">
+                <div id="nav"></div>
+            </div>
+            <div style="flex-grow: 1">
+                <div id="dp"></div>
+            </div>
         </div>
-        <div style="flex-grow: 1">
-            <div id="dp"></div>
-        </div>
+
     </div>
 
     <div id="myModal" class="modal">
@@ -37,7 +72,8 @@
         <div class="modal-content">
             <span class="close">&times;</span>
             <h5 id="confirmation"></h5>
-            <button id="cancelAvailability" onclick="cancelAvailability()">Cancel Availability</button>
+            <button id="cancelAvailability" class="btn btn-dark float-start" onclick="cancelAvailability()">Cancel
+                Availability</button>
         </div>
 
     </div>
@@ -79,10 +115,7 @@
                 console.log("docId: " + docId);
 
 
-                let welcomeHeader = `<div class="container"><h1>Welcome ${doctor.firstName}!</h1></div>
-                    <div class="container">
-                    <h3>Here is your Information</h3><br>
-                    </div>`
+                let welcomeHeader = `<h1 class="lead mt-3 display-4">Welcome ${doctor.firstName}!</h1><br>`
 
                 let information =
                     `<thead>
@@ -90,6 +123,9 @@
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Email</th>
+                <th>Medical School</th>
+                <th>Specialty</th>
+                <th>Years in Practice</th>
                 </tr>
             </thead>
             <tbody>
@@ -97,6 +133,9 @@
                 <td>${doctor.firstName}</td>
                 <td>${doctor.lastName}</td>
                 <td>${doctor.email}</td>
+                <td>${doctor.medSchool}</td>
+                <td>${doctor.specialtyId.specialty}</td>
+                <td>${doctor.yearsInPractice}</td>
             </tr>
             </tbody>`
 
@@ -146,13 +185,13 @@
             var name = prompt("Enter Confirm, to Confirm", "Confirm");
             dp.clearSelection();
             if (!name || name != "Confirm") return;
-            
+
             var e = new DayPilot.Event({
                 start: args.start,
                 end: args.end
-                
+
             });
-            
+
             console.log(e.data.start);
             console.log(e.data.end);
             console.log(e);
@@ -259,14 +298,14 @@
 
                 document.getElementById("confirmation").innerHTML = "Availability Confirmed!";
                 setTimeout(() => {
-                    
+
                 }, 1500);
 
                 window.location.reload();
 
             }
         }
-        
+
         xhttp.open("POST", "http://localhost:8080/addAvailability");
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send(JSON.stringify(availability));

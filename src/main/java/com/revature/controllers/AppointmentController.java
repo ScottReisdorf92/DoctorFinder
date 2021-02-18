@@ -10,7 +10,7 @@ public interface AppointmentController {
 	
 	public List<Appointment> loadPatientAppointments(String id);
 	
-	public Appointment bookAppointment(Appointment appt);
+	public Appointment bookAppointment(Appointment appt, String id);
 	
 	public boolean deleteAppointment(int id);
 	

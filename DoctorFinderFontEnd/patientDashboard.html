@@ -8,34 +8,57 @@
     <script src="daypilot-all.min.js"></script>
     <link type="text/css" rel="stylesheet" href="calendar_g.css" />
     <link type="text/css" rel="stylesheet" href="./Modal/Modal.css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link type="text/css" rel="Stylesheet" href="./CSS/dashboard.css">
 </head>
 
 <body onload="getLoggedInPatient()">
 
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Doctor Finder</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="#">Patient Dashboard <span class="sr-only">(current)</span></a>
+                <!-- <a class="nav-item nav-link" href="./login.html">Login</a>
+                <a class="nav-item nav-link" href="./PatAccCreate.html">Sign Up</a> -->
+                <a class="nav-item nav-link" href="./About.html">About</a>
+                <a class="nav-item nav-link" href="./Contact.html">Contact Us</a>
+
+            </div>
+        </div>
+    </nav>
+
     <div class="container">
-        <h1 id="header"></h1>
+        <div class="border border-3 rounded-3 text-center pb-3 bg-light">
+            <h1 id="header"></h1>
+            <div id="tableContainer">
+                <table class="table table-hover" id="infoTable"></table>
+            </div>
+        </div>
+        <div>
+            <button onclick="BookAppt()">Book an Appointment!</button>
+        </div>
     </div>
-    <div class="container">
-        <table id="infoTable"></table>
-    </div>
-    <div class="container">
+    <!-- <div class="container">
         <h3 id="h3Appt"></h3>
-    </div>
-    <div>
-        <button onclick="BookAppt()">Book an Appointment!</button>
-    </div>
+    </div> -->
+    <div id="calenderContainer" class="container">
 
-    <div class="main" style="display: flex;">
-        <div style="margin-right: 10px;">
-            <div id="nav"></div>
+        <div class="main" style="display: flex;">
+            <div style="margin-right: 10px;">
+                <div id="nav"></div>
+            </div>
+            <div style="flex-grow: 1">
+                <div id="dp"></div>
+            </div>
         </div>
-        <div style="flex-grow: 1">
-            <div id="dp"></div>
-        </div>
+
     </div>
-
-
-    
 
 <div id="modalId" class="modal">
 </div>
@@ -60,10 +83,7 @@
                 console.log("patId: " + patId);
 
 
-                let welcomeHeader = `<div class="container"><h1>Welcome ${patient.firstName}!</h1></div>
-                    <div class="container">
-                    <h3>Here is your Information</h3><br>
-                    </div>`
+                let welcomeHeader = `<h1 class="lead mt-3 display-4">Welcome ${patient.firstName}!</h1><br>`
 
                 let information =
                     `<thead>

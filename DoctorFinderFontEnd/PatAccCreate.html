@@ -1,23 +1,81 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link type="text/css" rel="Stylesheet" href="./CSS/login.css">
+</head>
 
 <body>
 
-    <p>Logo and Title</p>
-    <p>Welcome new Patient</p>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Doctor Finder</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="#">Sign Up <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="./login.html">Login</a>
+                <a class="nav-item nav-link" href="./About.html">About</a>
+                <a class="nav-item nav-link" href="./Contact.html">Contact Us</a>
+                <!-- <a class="nav-item nav-link" href="./PatAccCreate.html">Sign Up</a> -->
+            </div>
+        </div>
+    </nav>
 
-    <input type="text" id="firstname">First Name
-    <br>
-    <input type="text" id="lastname">Last Name
-    <br>
-    <input type="text" id="email">Email
-    <br>
-    <input type="text" id="pass">Password
-    <br>
-    <input type="text" id="phone">Phone
-    <br>
-    <input type="button" id="submit" onclick="addPatient">Create Account
-    <br>
-    <p id="place">Confirmation</p>
+    <div class="container">
+        <div class="border border-3 rounded-3 text-center pb-3 bg-light">
+            <h1 class="lead mt-3 display-4">Welcome new Patient!</h1>
+
+            <form class="m-4">
+
+                <div class="mb-3">
+                    <label for="firstName" class="form-label float-start"> First Name:</label>
+                    <input id="firstname" class="form-control" type="text" placeholder="Enter First Name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="lastName" class="form-label float-start"> Last Name:</label>
+                    <input id="lastname" class="form-control" type="text" placeholder="Enter Last Name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label float-start"> Email:</label>
+                    <input id="email" class="form-control" type="email" placeholder="Enter Email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label float-start"> Password:</label>
+                    <input id="pass" class="form-control" type="password" placeholder="Enter Password" required>
+                </div>
+                <div class="mb-3">
+                    <label for="phoneNumber" class="form-label float-start"> Phone:</label>
+                    <input id="phone" class="form-control" type="text" placeholder="Enter Phone Number" required>
+                </div>
+                <p id="place"></p>
+
+                <!-- <input type="text" id="firstname">First Name
+                <br> -->
+                <!-- <input type="text" id="lastname">Last Name
+                <br> -->
+                <!-- <input type="text" id="email">Email
+                <br> -->
+                <!-- <input type="text" id="pass">Password
+                <br> -->
+                <!-- <input type="text" id="phone">Phone
+                <br> -->
+            </form>
+            <button type="button" id="submit" class="btn btn-dark float-start" onclick="addPatient()">Create
+                Account</button>
+            <!-- <input type="button" id="submit" onclick="addPatient">Create Account -->
+
+        </div>
+
+    </div>
 
 </body>
 
@@ -26,13 +84,20 @@
 
 <script>
     function addPatient() {
+
+        let firstName = document.getElementById("firstname").value;
+        let lastName = document.getElementById("lastname").value;
+        let email = document.getElementById("email").value;
+        let password = document.getElementById("pass").value;
+        let phoneNumber = document.getElementById("phone").value;
+
         let patient =
         {
-            firstName: document.getElementById("firstname"),
-            lastName: document.getElementById("lastname"),
-            email: document.getElementById("email"),
-            password: document.getElementById("pass"),
-            phoneNumber: document.getElementById("phone")
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            password: password,
+            phoneNumber: phoneNumber
         }
 
         console.log(patient);
@@ -41,8 +106,14 @@
         xhttp.onreadystatechange = function () {
 
             if (this.readyState == 4 && this.status == 200) {
+                console.log(this.responseText);
 
-                window.location.href = "http://localhost:8080/patientDashboard.html"
+                document.getElementById("place").innerHTML = "Account Created!"
+
+                setTimeout(() => {
+                    window.location.href = `./login.html`;
+
+                }, 1000);
 
 
             }

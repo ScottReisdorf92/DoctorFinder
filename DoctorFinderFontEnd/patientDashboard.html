@@ -31,6 +31,7 @@
 
             </div>
         </div>
+        <span class="navbar-text" ><button type="button" onclick="logout()" class="btn btn-link">Logout</button></span>
     </nav>
 
     <div class="container">
@@ -202,6 +203,10 @@ document.getElementById('modalId').style.display='block'
         xhttp.open("DELETE","http://localhost:8080/deleteappointment/"+appId, true);
         xhttp.send();
 
+    }
+
+    function logout() {
+        window.location.href = "./login.html";
     }
     // Delete Appointment Function End
 

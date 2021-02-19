@@ -34,6 +34,7 @@
 
             </div>
         </div>
+        <span class="navbar-text" ><button type="button" onclick="logout()" class="btn btn-link">Logout</button></span>
     </nav>
 
 
@@ -311,6 +312,11 @@
         xhttp.send(JSON.stringify(availability));
 
         //alert("clicked: " + args.e.id());
+    }
+
+    function logout() {
+
+        window.location.href = "./login.html";
     }
 
 

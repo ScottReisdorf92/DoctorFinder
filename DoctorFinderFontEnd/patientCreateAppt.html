@@ -23,13 +23,14 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-item nav-link active" href="#">Book Appointment <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="./login.html">Login</a>
+                <!-- <a class="nav-item nav-link" href="./login.html">Login</a> -->
                 <a class="nav-item nav-link" href="./About.html">About</a>
-                <a class="nav-item nav-link" href="./PatAccCreate.html">Sign Up</a>
+                <!-- <a class="nav-item nav-link" href="./PatAccCreate.html">Sign Up</a> -->
                 <a class="nav-item nav-link" href="./Contact.html">Contact Us</a>
 
             </div>
         </div>
+        <span class="navbar-text"><button type="button" onclick="logout()" class="btn btn-link">Logout</button></span>
     </nav>
 
     <div class="container">
@@ -39,7 +40,7 @@
 
             <h3 class="lead mt-3 display-5">Please select a specialty</h3>
             <div>
-                <div class="form-group">
+                <div class="form-group px-5">
                     <select id="specialty" class="form-control" onchange="loadCalendar(), loadNav()">
                         <option value="5">Cardiologist</option>
                         <option value="1">Dermatologist</option>
@@ -219,6 +220,11 @@
 
         xhttp.open("GET", "http://localhost:8080/loggedInPatient?id=" + paramsId, true);
         xhttp.send();
+    }
+
+    function logout() {
+
+        window.location.href = "./login.html";
     }
 
 

@@ -52,8 +52,14 @@ public class DoctorControllerImpl implements DoctorController {
 	@GetMapping(value = "/loggedInDoctor", produces = "application/json")
 	public Doctor loggedInDoctor(@RequestParam(required = true) String id) {
 		System.out.println(id);
-		int inputId = Integer.parseInt(id);
-		
+		int inputId;
+		try {
+			inputId = Integer.parseInt(id);
+			
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+			return null;
+		}
 	    return ds.loggedInDoctor(inputId);
 	}
 

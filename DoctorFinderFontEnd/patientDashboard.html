@@ -26,8 +26,8 @@
                 <a class="nav-item nav-link active" href="#">Patient Dashboard <span class="sr-only">(current)</span></a>
                 <!-- <a class="nav-item nav-link" href="./login.html">Login</a>
                 <a class="nav-item nav-link" href="./PatAccCreate.html">Sign Up</a> -->
-                <a class="nav-item nav-link" href="./About.html">About</a>
-                <a class="nav-item nav-link" href="./Contact.html">Contact Us</a>
+                <a class="nav-item nav-link" id="about" href= "./About.html">About</a>
+                <a class="nav-item nav-link" id="contact" href="./Contact.html">Contact Us</a>
 
             </div>
         </div>
@@ -106,6 +106,8 @@
 
                 document.getElementById("header").innerHTML = welcomeHeader;
                 document.getElementById("infoTable").innerHTML = information;
+                document.getElementById("about").setAttribute("href", "./about.html?id=" + paramsId + "&email=" + patient.email);
+                document.getElementById("contact").setAttribute("href", "./contact.html?id=" + paramsId + "&email=" + patient.email);
 
                 loadCalendar();
                 loadNav();
@@ -208,36 +210,7 @@ document.getElementById('modalId').style.display='block'
     function logout() {
         window.location.href = "./login.html";
     }
-    // Delete Appointment Function End
 
-    
-/* This will be super useful later for creating patient appointments and adding them
-    Will need to add specific fields to e being created
-    
-    <script src="scripts/daypilot-all.min.js" type="text/javascript">
-<link type="text/css" rel="stylesheet" href="themes/calendar_white.css" />
-
-<div id="dp"></div>
-
-<script type="text/javascript">
-    var dp = new DayPilot.Calendar("dp");
-
-    // behavior and appearance
-    dp.cssClassPrefix = "calendar_white";
-
-    // view
-    dp.startDate = "2016-03-25";
-    dp.days = 1;
-
-    var e = new DayPilot.Event({
-        start: new DayPilot.Date("2016-03-25T00:00:00"),
-        end: new DayPilot.Date("2016-03-27T00:00:00"),
-        id: DayPilot.guid(),
-        text: "Event"
-    });
-    dp.events.add(e);
-    dp.init();
-*/
 </script>
 <script src="./Modal/Modal.js"></script>
 

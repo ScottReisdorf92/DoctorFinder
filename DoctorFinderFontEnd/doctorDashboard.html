@@ -29,8 +29,8 @@
                 <a class="nav-item nav-link active" href="#">Doctor Dashboard <span class="sr-only">(current)</span></a>
                 <!-- <a class="nav-item nav-link" href="./login.html">Login</a>
                 <a class="nav-item nav-link" href="./PatAccCreate.html">Sign Up</a> -->
-                <a class="nav-item nav-link" href="./About.html">About</a>
-                <a class="nav-item nav-link" href="./Contact.html">Contact Us</a>
+                <a class="nav-item nav-link" id="about" href="./About.html">About</a>
+                <a class="nav-item nav-link" id="contact" href="./Contact.html">Contact Us</a>
 
             </div>
         </div>
@@ -142,6 +142,8 @@
 
                 document.getElementById("header").innerHTML = welcomeHeader;
                 document.getElementById("infoTable").innerHTML = information;
+                document.getElementById("about").setAttribute("href", "./about.html?id=" + paramsId + "&email=" + doctor.email);
+                document.getElementById("contact").setAttribute("href", "./contact.html?id=" + paramsId + "&email=" + doctor.email);
                 loadCalendar();
                 loadNav();
             }

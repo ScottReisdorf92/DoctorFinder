@@ -20,4 +20,6 @@ public interface AvailabilityRepo extends CrudRepository<Availability, Integer>{
 	public List<Availability> findAllByDoctorIdAndStartAfterAndEndBefore(Doctor doctorId, LocalDateTime start, LocalDateTime end);
 	
 	public List<Availability> findAllBySpecialtyIdAndStartAfterAndEndBefore(Specialty specialtyId, LocalDateTime start, LocalDateTime end);
+	
+	
 }

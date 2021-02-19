@@ -1,0 +1,28 @@
+html {
+    background-color: rgb(163,172,177);
+}
+
+body {
+    background-color: rgb(163,172,177);
+}
+
+p {
+    margin: 8px;
+    padding: 10px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}
+
+.container {
+    margin-top: 5%;
+    width: 75%;
+}
+
+.btn-dark {
+    background-color: rgb(163,172,177);
+}
+
+.form-label{
+    float: left!important;
+}
+
+

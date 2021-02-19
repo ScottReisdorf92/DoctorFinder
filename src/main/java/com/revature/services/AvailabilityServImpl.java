@@ -40,4 +40,18 @@ public class AvailabilityServImpl implements AvailabilityServ {
 		return a;
 	}
 	
+	@Override
+	public boolean cancelAvailibity(String id) {
+		System.out.println(id);
+		availRepo.deleteById(Integer.parseInt(id));
+		return true;
+	}
+
+	@Override
+	public Availability addAvailability(Availability a) {
+		System.out.println(a.toString());
+		return(availRepo.save(a));
+	}
+	
+	
 }

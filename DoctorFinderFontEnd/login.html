@@ -5,23 +5,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link type="text/css" rel="Stylesheet" href="./CSS/login.css">
 </head>
 
 <body>
-    <div>
-        <h1>Welcome to the Doctor Finder!</h1>
-        <p>This application is for you to find a doctor's appointment quickly
-            and at your earliest convenience. This application is not intended for
-            use if you have an Emergency. In the case of an emergency please call
-            911 or get to an Emergency Room. This application is intended to get you
-            to a doctor if you don't want to wait for possibly weeks to see your
-            normal doctor, and for you to find doctor appointment openings that you can
-            fit into your schedule!
-        </p>
-        <h2>Please Login Below!</h2>
-    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Doctor Finder</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="#">Login <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="./About.html">About</a>
+                <a class="nav-item nav-link" href="./Contact.html">Contact Us</a>
+                <a class="nav-item nav-link" href="./PatAccCreate.html">Sign Up</a>
+            </div>
+        </div>
+    </nav>
 
     <div class="container">
+        <div class="border border-3 rounded-3 text-center pb-3 bg-light">
+            <h1 class="lead mt-3 display-4">Welcome to the Doctor Finder!</h1>
+            <p>This application is for you to find a doctor's appointment quickly
+                and at your earliest convenience. This application is not intended for
+                use if you have an Emergency. In the case of an emergency please call
+                911 or get to an Emergency Room.
+            </p>
+            <h3 class="lead mt-3 display-5">Please Login Below!</h3>
+            <form class="m-4">
+                <p id="errMsg" style="color: red;"></p>
+                <div class="mb-3">
+                    <label for="email" class="form-label float-start"> Email:</label>
+                    <input id="email" class="form-control" type="text" placeholder="Enter Email" name="email" required>
+                </div>
+                <div class="mb-3 ">
+                    <label for="password" class="form-label float-start"> Password:</label>
+                    <input id="password" class="form-control" type="password" placeholder="Enter Password"
+                        name="password" required>
+                </div>
+            </form>
+            <div class="mb-3">
+
+                <button onclick="patientLogin()" class="btn btn-dark float-start" type="button" id="patientLogin">Login
+                    as Patient</button>
+                <button onclick="doctorLogin()" class="btn btn-dark float-start" type="button" id="doctorLogin">Login as
+                    Doctor</button>
+                <button onclick="signUp()" class="btn btn-dark float-start" type="button" id="signUp">Not
+                    Registered? Sign Up now!</button>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- <div class="container">
         <label for="email"><b>Email</b></label>
         <input id="email" type="text" placeholder="Enter Email" name="email" required>
 
@@ -32,7 +75,7 @@
         <button onclick="doctorLogin()" type="button" id="doctorLogin">Login as Doctor</button>
         <button onclick="signUp()" type="button" id="signUp">Not Registered? Sign Up now!</button>
 
-    </div>
+    </div> -->
 
 </body>
 <script>

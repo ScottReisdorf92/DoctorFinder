@@ -4,16 +4,19 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.entities.Appointment;
 import com.revature.entities.Doctor;
 import com.revature.entities.Patient;
 import com.revature.services.AppointmentServ;
+import com.revature.services.AvailabilityServ;
 import com.revature.services.DoctorServ;
 import com.revature.services.PatientServ;
 
@@ -29,7 +32,11 @@ public class AppointmentControllerImpl implements AppointmentController {
 	
 	@Autowired
 	private PatientServ patServ;
-
+	
+	@Autowired
+	private AvailabilityServ availServ;
+	
+	
 	@Override
 	@CrossOrigin
 	@GetMapping(value = "/loadAppointments/{id}")
@@ -57,10 +64,23 @@ public class AppointmentControllerImpl implements AppointmentController {
 	@Override
 	@CrossOrigin
 	@PostMapping(value = "/bookAppointment", produces = "application/json")
-	public Appointment bookAppointment(@RequestBody Appointment appt) {
+	public Appointment bookAppointment(@RequestBody Appointment appt, @RequestParam(required = true) String id) {
 		System.out.println(appt);
 		Appointment a = apptServ.bookAppointment(appt);
 		System.out.println("returned appt " + a);
+		availServ.cancelAvailibity(id);
 		return a;
 	}
+
+	@Override
+	@CrossOrigin
+	@DeleteMapping(value="/deleteappointment/{id}")
+	public boolean deleteAppointment(@PathVariable int id) {
+		
+		return apptServ.deleteAppointment(id);
+		
+	}
+
+	
+	
 }

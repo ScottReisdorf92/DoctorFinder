@@ -2,22 +2,24 @@ package com.revature.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="specialty")
 public class Specialty {
 	
-	// Fields
 	
 	@Id
 	@Column(updatable = false, name ="specialty_id")
-
+	@SequenceGenerator(sequenceName = "SPECIALTY_ID_SEQ", name = "SPECIALTY_ID_SEQ", allocationSize = 1)
+	@GeneratedValue(generator = "SPECIALTY_ID_SEQ", strategy = GenerationType.SEQUENCE)
 	private int specialtyId;
 	@Column(name = "specialty_name")
 	private String specialty;
-
 
 	
 	//-------------------------------------------------------
@@ -49,25 +51,25 @@ public class Specialty {
 
 
 
-	public int getspecialityId() {
+	public int getSpecialtyId() {
 		return specialtyId;
 	}
 
 
 
-	public void setspecialityId(int specialityId) {
-		this.specialtyId = specialityId;
+	public void setSpecialtyId(int specialtyId) {
+		this.specialtyId = specialtyId;
 	}
 
 
 
-	public String getSpeciality() {
+	public String getSpecialty() {
 		return specialty;
 	}
 
 
 
-	public void setSpeciality(String speciality) {
+	public void setSpecialty(String speciality) {
 		this.specialty = speciality;
 	}
 	

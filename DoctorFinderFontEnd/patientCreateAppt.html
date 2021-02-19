@@ -23,13 +23,14 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-item nav-link active" href="#">Book Appointment <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="./login.html">Login</a>
-                <a class="nav-item nav-link" href="./About.html">About</a>
-                <a class="nav-item nav-link" href="./PatAccCreate.html">Sign Up</a>
-                <a class="nav-item nav-link" href="./Contact.html">Contact Us</a>
+                <!-- <a class="nav-item nav-link" href="./login.html">Login</a> -->
+                <a class="nav-item nav-link" id="about" href="./About.html">About</a>
+                <!-- <a class="nav-item nav-link" href="./PatAccCreate.html">Sign Up</a> -->
+                <a class="nav-item nav-link" id="contact" href="./Contact.html">Contact Us</a>
 
             </div>
         </div>
+        <span class="navbar-text"><button type="button" onclick="logout()" class="btn btn-link">Logout</button></span>
     </nav>
 
     <div class="container">
@@ -39,7 +40,7 @@
 
             <h3 class="lead mt-3 display-5">Please select a specialty</h3>
             <div>
-                <div class="form-group">
+                <div class="form-group px-5">
                     <select id="specialty" class="form-control" onchange="loadCalendar(), loadNav()">
                         <option value="5">Cardiologist</option>
                         <option value="1">Dermatologist</option>
@@ -198,15 +199,21 @@
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 console.log(this.responseText);
-                patient = JSON.parse(this.responseText);
-                console.log(patient);
-                patId = patient.patientId;
-                console.log("patId: " + patId);
+                if(this.responseText != "{}") {
+                    patient = JSON.parse(this.responseText);
+                    console.log(patient);
+                    patId = patient.patientId;
+                    console.log("patId: " + patId);
 
 
-                let welcomeHeader = `<h1 class="lead mt-3 display-4">Welcome ${patient.firstName}!</h1>`
+                    let welcomeHeader = `<h1 class="lead mt-3 display-4">Welcome ${patient.firstName}!</h1>`
 
-                document.getElementById("header").innerHTML = welcomeHeader;
+                    document.getElementById("header").innerHTML = welcomeHeader;
+                    document.getElementById("about").setAttribute("href", "./about.html?id=" + paramsId + "&email=" + patient.email);
+                    document.getElementById("contact").setAttribute("href", "./contact.html?id=" + paramsId + "&email=" + patient.email);
+                } else {
+                    window.location.href = "./login.html";
+                }
 
             }
         }
@@ -219,6 +226,11 @@
 
         xhttp.open("GET", "http://localhost:8080/loggedInPatient?id=" + paramsId, true);
         xhttp.send();
+    }
+
+    function logout() {
+
+        window.location.href = "./login.html";
     }
 
 

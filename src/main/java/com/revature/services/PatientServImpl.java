@@ -1,5 +1,7 @@
 package com.revature.services;
 
+import java.util.NoSuchElementException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +25,13 @@ public class PatientServImpl implements PatientServ {
 
 	@Override
 	public Patient loggedInPatient(int id) {
-		return patRepo.findById(id).get();
+		try {
+			System.out.println(id);
+			Patient p = patRepo.findById(id).get();
+			return p;
+		} catch (NoSuchElementException e) {
+			return null;
+		}
 	}
 	
 	@Override

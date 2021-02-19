@@ -26,9 +26,11 @@ public class DoctorControllerImpl implements DoctorController {
 	@CrossOrigin
 	@PostMapping(value="/DoctorSignup", consumes="application/json", produces="application/json")
 	public Doctor signUp(@RequestBody Doctor doctor) {
-		System.out.println(doctor);
-		
 		return ds.signUp(doctor);
+		
+		//return ds.signUp(doctor);
+		
+	
 	}
 	
 

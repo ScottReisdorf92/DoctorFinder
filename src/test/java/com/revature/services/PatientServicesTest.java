@@ -35,12 +35,10 @@ class PatientServicesTest {
 	@Test
 	void signin(){
 		Patient p = new Patient(1,"A", "K", "email","password", "phone#1234");
-		Optional<Patient> optionP = Optional.of(p); 
-		Mockito.when(pr.findById(p.getPatientId())).thenReturn(optionP);
 		
-		//Mockito.doNothing().when(pr).findById(p.getPatientId());
-		
+		Mockito.when(pr.getPatientByEmail(p.getEmail())).thenReturn(p);
 		Patient pa = ps.patientLogin(p);
+		System.out.println(pa);
 		Assertions.assertEquals(1, pa.getPatientId());
 	}
 

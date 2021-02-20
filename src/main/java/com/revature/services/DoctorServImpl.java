@@ -12,6 +12,8 @@ import com.revature.repositories.SpecialtyRepo;
 
 @Service
 public class DoctorServImpl implements DoctorServ {
+	
+
 
 	@Autowired
 	private DoctorRepo dr;

@@ -51,11 +51,11 @@ public class Doctor {
 	private String medSchool;
 
 	// Foreign Key Columns
-	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "practice_id")
 	private Practice practiceId;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "specialty_id")
 	private Specialty specialtyId;
 

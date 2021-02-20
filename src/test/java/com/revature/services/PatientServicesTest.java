@@ -41,5 +41,32 @@ class PatientServicesTest {
 		System.out.println(pa);
 		Assertions.assertEquals(1, pa.getPatientId());
 	}
+	
+	@Test
+	void getLoggedInPatient() {
+		
+		Patient p = new Patient(1,"A", "K", "email","password", "phone#1234");
+		Optional<Patient> optionalP = Optional.of(p);
+		
+		Mockito.when(pr.findById(p.getPatientId())).thenReturn(optionalP);
+		
+		Patient pp =ps.loggedInPatient(p.getPatientId());
+		
+		Assertions.assertEquals(1, pp.getPatientId());
+	}
+	
+	@Test
+	void getPatientbyId() {
+		
+		Patient p = new Patient(1,"A", "K", "email","password", "phone#1234");
+		Optional<Patient> optionalP = Optional.of(p);
+		
+		Mockito.when(pr.findById(p.getPatientId())).thenReturn(optionalP);
+		
+		Patient pp =ps.getPatientById(p.getPatientId());
+		
+		Assertions.assertEquals(1, pp.getPatientId());
+	}
+	
 
 }

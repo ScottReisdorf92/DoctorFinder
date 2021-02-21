@@ -37,14 +37,9 @@ public class DoctorControllerImpl implements DoctorController {
 	@Override
 	@CrossOrigin
 	@PostMapping(value = "/doctorLogin", consumes = "application/json", produces = "application/json")
-	public Doctor doctorLogin(@RequestBody Doctor doctor, HttpServletResponse response) {
+	public Doctor doctorLogin(@RequestBody Doctor doctor) {
 		System.out.println(doctor);
 		Doctor foundDoc = ds.doctorLogin(doctor);
-		if (foundDoc != null) {
-			Cookie cookie = new Cookie("doctorEmail", foundDoc.getEmail());
-			cookie.setSecure(true);
-			response.addCookie(cookie);
-		}
 		
 		return foundDoc;
 	}
@@ -65,14 +60,5 @@ public class DoctorControllerImpl implements DoctorController {
 	    return ds.loggedInDoctor(inputId);
 	}
 
-	
-	@Override
-	@CrossOrigin
-	@GetMapping(value = "/doctorLogout")
-	public boolean doctorLogout(HttpServletResponse response) {
-		Cookie cookie = new Cookie("doctorEmail", "");
-		cookie.setMaxAge(0);
-		return true;
-	}
 		
 }

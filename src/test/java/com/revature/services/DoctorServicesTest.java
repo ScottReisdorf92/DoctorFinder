@@ -16,7 +16,7 @@ import com.revature.repositories.PracticeRepo;
 import com.revature.repositories.SpecialtyRepo;
 
 
-@SpringBootTest(classes= com.revature.demo.Project2DfApplicationTests.class)
+@SpringBootTest(classes= com.revature.demo.Project2DfApplication.class)
 class DoctorServicesTest {
 
 	@MockBean

@@ -17,10 +17,10 @@ button:hover {
 }
 
 /* Float cancel and delete buttons and add an equal width */
-.cancelbtn, .deletebtn {
+/* .cancelbtn, .deletebtn {
   float: left;
   width: 50%;
-}
+} */
 
 /* Add a color to the cancel button */
 .cancelbtn {

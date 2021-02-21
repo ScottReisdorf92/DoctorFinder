@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book an Appointment</title>
     <script src="daypilot-all.min.js"></script>
-    <link type="text/css" rel="stylesheet" href="calendar_g.css" />
+    <link type="text/css" rel="stylesheet" href="./CSS/calendar_g.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link type="text/css" rel="Stylesheet" href="./CSS/patientCreateAppt.css">
@@ -128,8 +128,7 @@
 
         dp = new DayPilot.Calendar("dp");
         dp.viewType = "Week";
-        dp.startDate = "2021-02-14";
-        //dp.theme = "calendar_g";
+        dp.theme = "calendar_g";
         dp.init();
 
         dp.eventsLoadMethod = "GET";

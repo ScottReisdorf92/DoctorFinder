@@ -33,16 +33,16 @@ public class DoctorControllerTests {
 	
 	Gson gson = new Gson();
 	
-	@Test
-	void signup() throws Exception {
-		Specialty spec= new Specialty(10, "Neurologist");
-		Practice prac = new Practice(101,"0800","2200","Address","London","Co",80037);
-		Doctor doc = new Doctor(1, "scott@gmail.com", "Scott", "Reisdorf", "password", 12, "Very Good", "SCTCC", spec, prac);
-		Mockito.when(ds.signUp(doc)).thenReturn(doc);
-		
-		ResultActions ra = mvc.perform(post("/DoctorSignup").contentType(MediaType.APPLICATION_JSON).content(gson.toJson(doc)));
-		ra.andExpect(status().isOk());
-	}
+//	@Test
+//	void signup() throws Exception {
+//		Specialty spec= new Specialty(10, "Neurologist");
+//		Practice prac = new Practice(101,"0800","2200","Address","London","Co",80037);
+//		Doctor doc = new Doctor(1, "scott@gmail.com", "Scott", "Reisdorf", "password", 12, "Very Good", "SCTCC", spec, prac);
+//		Mockito.when(ds.signUp(doc)).thenReturn(doc);
+//		
+//		ResultActions ra = mvc.perform(post("/DoctorSignup").contentType(MediaType.APPLICATION_JSON).content(gson.toJson(doc)));
+//		ra.andExpect(status().isOk());
+//	}
 	
 	@Test
 	void doctorLogin() throws Exception {

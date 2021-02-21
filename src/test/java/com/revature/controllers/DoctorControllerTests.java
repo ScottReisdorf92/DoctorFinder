@@ -43,4 +43,5 @@ public class DoctorControllerTests {
 		ResultActions ra = mvc.perform(post("/DoctorSignup").contentType(MediaType.APPLICATION_JSON).content(gson.toJson(doc)));
 		ra.andExpect(status().isOk());
 	}
+	
 }

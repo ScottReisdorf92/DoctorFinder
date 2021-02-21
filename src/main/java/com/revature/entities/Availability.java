@@ -2,6 +2,10 @@ package com.revature.entities;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -142,6 +146,12 @@ public class Availability {
 		return "Availability [id=" + id + ", start=" + start + ", end=" + end + ", specialtyId=" + specialtyId
 				+ ", doctorId=" + doctorId + "]";
 	}
+
+
+
+
+
+	
 	
 	
 	

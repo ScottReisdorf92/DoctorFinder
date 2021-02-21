@@ -9,7 +9,7 @@ import com.revature.entities.Patient;
 
 public interface PatientController {
 	
-	public Patient patientLogin(Patient patient, HttpServletResponse response);
+	public Patient patientLogin(Patient patient);
 	
 	public Patient loggedInPatient(String input);
 

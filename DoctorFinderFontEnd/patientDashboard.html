@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patient Portal</title>
     <script src="daypilot-all.min.js"></script>
-    <link type="text/css" rel="stylesheet" href="calendar_g.css" />
+    <link type="text/css" rel="stylesheet" href="./CSS/calendar_g.css" />
     <link type="text/css" rel="stylesheet" href="./Modal/Modal.css"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -26,11 +26,12 @@
                 <a class="nav-item nav-link active" href="#">Patient Dashboard <span class="sr-only">(current)</span></a>
                 <!-- <a class="nav-item nav-link" href="./login.html">Login</a>
                 <a class="nav-item nav-link" href="./PatAccCreate.html">Sign Up</a> -->
-                <a class="nav-item nav-link" href="./About.html">About</a>
-                <a class="nav-item nav-link" href="./Contact.html">Contact Us</a>
+                <a class="nav-item nav-link" id="about" href= "./About.html">About</a>
+                <a class="nav-item nav-link" id="contact" href="./Contact.html">Contact Us</a>
 
             </div>
         </div>
+        <span class="navbar-text" ><button type="button" onclick="logout()" class="btn btn-link">Logout</button></span>
     </nav>
 
     <div class="container">
@@ -105,6 +106,8 @@
 
                 document.getElementById("header").innerHTML = welcomeHeader;
                 document.getElementById("infoTable").innerHTML = information;
+                document.getElementById("about").setAttribute("href", "./about.html?id=" + paramsId + "&email=" + patient.email);
+                document.getElementById("contact").setAttribute("href", "./contact.html?id=" + paramsId + "&email=" + patient.email);
 
                 loadCalendar();
                 loadNav();
@@ -143,8 +146,7 @@
       
         dp = new DayPilot.Calendar("dp");
         dp.viewType = "Week";
-        dp.startDate = "2021-02-14";
-        //dp.theme = "calendar_g";
+        dp.theme = "calendar_g";
         dp.init();
 
         dp.eventsLoadMethod = "GET";
@@ -158,10 +160,9 @@
   <div class="modal-content">
     <div class="container">
       <h1>Appointment for ${args.e.text()}</h1>
-      <p>Please Select an Action</p>
+      <p>Are You sure you want to delete?</p>
 
       <div class="clearfix">
-        <button type="button" class="cancelbtn">Update</button>
         <button type="button" class="deletebtn" onclick="deleteApp(${args.e.id()})">Delete</button>
       </div>
     </div>
@@ -203,36 +204,11 @@ document.getElementById('modalId').style.display='block'
         xhttp.send();
 
     }
-    // Delete Appointment Function End
 
-    
-/* This will be super useful later for creating patient appointments and adding them
-    Will need to add specific fields to e being created
-    
-    <script src="scripts/daypilot-all.min.js" type="text/javascript">
-<link type="text/css" rel="stylesheet" href="themes/calendar_white.css" />
+    function logout() {
+        window.location.href = "./login.html";
+    }
 
-<div id="dp"></div>
-
-<script type="text/javascript">
-    var dp = new DayPilot.Calendar("dp");
-
-    // behavior and appearance
-    dp.cssClassPrefix = "calendar_white";
-
-    // view
-    dp.startDate = "2016-03-25";
-    dp.days = 1;
-
-    var e = new DayPilot.Event({
-        start: new DayPilot.Date("2016-03-25T00:00:00"),
-        end: new DayPilot.Date("2016-03-27T00:00:00"),
-        id: DayPilot.guid(),
-        text: "Event"
-    });
-    dp.events.add(e);
-    dp.init();
-*/
 </script>
 <script src="./Modal/Modal.js"></script>
 

@@ -1,7 +1,6 @@
 package com.revature.entities;
 
-import java.util.List;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,16 +8,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
+@JsonSerialize
 @Entity
 @Table(name="doctors")
 public class Doctor {
+
 	
 	//----------------------------------------
 	//Fields
@@ -26,8 +25,7 @@ public class Doctor {
 	// Primary Key Column
 	@Id
 	@Column(updatable = false, name = "doctor_id")
-	@SequenceGenerator(sequenceName = "USER_ID_SEQ", name = "USER_ID_SEQ", allocationSize = 1)
-	@GeneratedValue(generator = "USER_ID_SEQ", strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int docId;
 
 	// Unique key Column
@@ -49,20 +47,15 @@ public class Doctor {
 	private String medSchool;
 
 	// Foreign Key Columns
+	@ManyToOne(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "practice_id")
+	private Practice practiceId;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "specialty_id")
 	private Specialty specialtyId;
 
-	@ManyToOne
-	@JoinColumn(name = "practice_id")
-	private Practice practiceId;
 	
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "doctors_insurance_accepted",
-			joinColumns = @JoinColumn(name = "doc_id"),
-			inverseJoinColumns = @JoinColumn(name = "insurance_id"))
-	private List<Insurance> insAccepted;
 
 //------------------------------------------------------------------
 	// Constructors
@@ -216,7 +209,7 @@ public class Doctor {
 	public String toString() {
 		return "Doctor [docId=" + docId + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName
 				+ ", password=" + password + ", yearsInPractice=" + yearsInPractice + ", description=" + description
-				+ ", yearGraduated=" + medSchool + ", SpecialtyId=" + specialtyId + ", practiceId=" + practiceId
+				+ ", yearGraduated=" + medSchool + ", specialtyId=" + specialtyId + ", practiceId=" + practiceId
 				+ ", insuranceId=" + "]";
 	}
 	

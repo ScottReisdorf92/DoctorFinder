@@ -11,7 +11,7 @@
     <link type="text/css" rel="Stylesheet" href="./CSS/login.css">
 </head>
 
-<body>
+<body onload="getLoggedInPatient()">
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Doctor Finder</a>
@@ -21,14 +21,16 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="#">Contact <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="./About.html">About</a>
-                <a class="nav-item nav-link" href="./login.html">Login</a>
-                <a class="nav-item nav-link" href="./PatAccCreate.html">Sign Up</a>
+                <a class="nav-item nav-link" id="dash" href="./patientDashboard.html">Dashboard</a>
+                <a class="nav-item nav-link" id="login" href="./login.html">Login</a>
+                <a class="nav-item nav-link" id="about" href="./About.html">About</a>
+                <a class="nav-item nav-link active" href="#">Contact Us<span class="sr-only">(current)</span></a>                
+                <!-- <a class="nav-item nav-link" href="./PatAccCreate.html">Sign Up</a> -->
                 <!-- <a class="nav-item nav-link" href="./About.html">Contact Us</a> -->
 
             </div>
         </div>
+        <span class="navbar-text" id="logout"><button type="button" onclick="logout()" class="btn btn-link">Logout</button></span>
     </nav>
 
     <div class="container">
@@ -41,5 +43,83 @@
     </div>
 
 </body>
+<script>
+    function getLoggedInPatient() {
+
+       
+
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log(this.responseText);
+                console.log(paramsEmail);
+                console.log(this.responseText.email == paramsEmail);
+                if(this.responseText != "" && JSON.parse(this.responseText).email == paramsEmail) {
+                    user = JSON.parse(this.responseText);
+                    console.log(user);
+                    document.getElementById("dash").setAttribute("href", "./patientDashboard.html?id=" + user.patientId);
+                } else {
+                    getLoggedInDoctor();
+                }
+     
+            }
+        }
+        // getting the whole queryurl
+        let parameter = window.location.search;
+        // splitting the parameters from the querystring
+        let urlparam = new URLSearchParams(parameter);
+        // getting the id from the queryurl
+        paramsId = urlparam.get("id");
+        paramsEmail = urlparam.get("email");
+        
+        if (paramsId == null) {
+            document.getElementById("login").setAttribute("href", "./login.html");
+            document.getElementById("login").text = "Login";
+            document.getElementById("dash").setAttribute("href", "");
+            document.getElementById("dash").text = ""; //TODO: not changing inner html. look at deleting elements
+            document.getElementById("dash").hidden = true;
+            document.getElementById("logout").hidden = true;
+            return;
+        }
+        document.getElementById("about").setAttribute("href", "./about.html?id=" + paramsId + "&email=" + paramsEmail);
+        document.getElementById("login").hidden = true;
+
+
+        xhttp.open("GET", "http://localhost:8080/loggedInPatient?id=" + paramsId, true);
+        xhttp.send();
+    }
+
+    function getLoggedInDoctor() {
+
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log(this.responseText);
+                if(this.responseText != "" && JSON.parse(this.responseText).email == paramsEmail) {
+                    user = JSON.parse(this.responseText);
+                    console.log(user);
+                    document.getElementById("dash").setAttribute("href", "./doctorDashboard.html?id=" + user.docId);
+                } else {
+                    window.location.href = "./login.html";
+                }
+            }
+        }
+
+        // getting the whole queryurl
+        let parameter = window.location.search;
+        // splitting the parameters from the querystring
+        let urlparam = new URLSearchParams(parameter);
+        // getting the id from the queryurl
+        paramsId = urlparam.get("id");
+
+        xhttp.open("GET", "http://localhost:8080/loggedInDoctor?id=" + paramsId, true);
+        xhttp.send();
+
+    }
+
+    function logout() {
+        window.location.href = "./login.html";
+    }
+</script>
 
 </html>

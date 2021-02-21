@@ -26,23 +26,20 @@ public class DoctorControllerImpl implements DoctorController {
 	@CrossOrigin
 	@PostMapping(value="/DoctorSignup", consumes="application/json", produces="application/json")
 	public Doctor signUp(@RequestBody Doctor doctor) {
-		System.out.println(doctor);
-		
 		return ds.signUp(doctor);
+		
+		//return ds.signUp(doctor);
+		
+	
 	}
 	
 
 	@Override
 	@CrossOrigin
 	@PostMapping(value = "/doctorLogin", consumes = "application/json", produces = "application/json")
-	public Doctor doctorLogin(@RequestBody Doctor doctor, HttpServletResponse response) {
+	public Doctor doctorLogin(@RequestBody Doctor doctor) {
 		System.out.println(doctor);
 		Doctor foundDoc = ds.doctorLogin(doctor);
-		if (foundDoc != null) {
-			Cookie cookie = new Cookie("doctorEmail", foundDoc.getEmail());
-			cookie.setSecure(true);
-			response.addCookie(cookie);
-		}
 		
 		return foundDoc;
 	}
@@ -52,19 +49,16 @@ public class DoctorControllerImpl implements DoctorController {
 	@GetMapping(value = "/loggedInDoctor", produces = "application/json")
 	public Doctor loggedInDoctor(@RequestParam(required = true) String id) {
 		System.out.println(id);
-		int inputId = Integer.parseInt(id);
-		
+		int inputId;
+		try {
+			inputId = Integer.parseInt(id);
+			
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+			return null;
+		}
 	    return ds.loggedInDoctor(inputId);
 	}
 
-	
-	@Override
-	@CrossOrigin
-	@GetMapping(value = "/doctorLogout")
-	public boolean doctorLogout(HttpServletResponse response) {
-		Cookie cookie = new Cookie("doctorEmail", "");
-		cookie.setMaxAge(0);
-		return true;
-	}
 		
 }

@@ -24,14 +24,10 @@ public class PatientControllerImpl implements PatientController {
 	@Override
 	@CrossOrigin
 	@PostMapping(value = "/patientLogin", consumes = "application/json", produces = "application/json")
-	public Patient patientLogin(@RequestBody Patient patient, HttpServletResponse response) {
+	public Patient patientLogin(@RequestBody Patient patient) {
 		System.out.println(patient);
 		Patient foundPatient = patServ.patientLogin(patient);
-		if(foundPatient != null) {
-			Cookie cookie = new Cookie("patientEmail", foundPatient.getEmail());
-			cookie.setSecure(true);
-			response.addCookie(cookie);
-		}
+
 		return foundPatient;
 	}
 
@@ -45,7 +41,6 @@ public class PatientControllerImpl implements PatientController {
 			inputId = Integer.parseInt(id);
 			
 		} catch (NumberFormatException e) {
-			e.printStackTrace();
 			return null;
 		}
 		System.out.println(inputId);

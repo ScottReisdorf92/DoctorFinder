@@ -1,9 +1,9 @@
 package com.revature.controllers;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -33,15 +33,42 @@ public class DoctorControllerTests {
 	
 	Gson gson = new Gson();
 	
+//	@Test
+//	void signup() throws Exception {
+//		Specialty spec= new Specialty(10, "Neurologist");
+//		Practice prac = new Practice(101,"0800","2200","Address","London","Co",80037);
+//		Doctor doc = new Doctor(1, "scott@gmail.com", "Scott", "Reisdorf", "password", 12, "Very Good", "SCTCC", spec, prac);
+//		Mockito.when(ds.signUp(doc)).thenReturn(doc);
+//		
+//		ResultActions ra = mvc.perform(post("/DoctorSignup").contentType(MediaType.APPLICATION_JSON).content(gson.toJson(doc)));
+//		ra.andExpect(status().isOk());
+//	}
+	
 	@Test
-	void signup() throws Exception {
+	void doctorLogin() throws Exception {
 		Specialty spec= new Specialty(10, "Neurologist");
 		Practice prac = new Practice(101,"0800","2200","Address","London","Co",80037);
 		Doctor doc = new Doctor(1, "scott@gmail.com", "Scott", "Reisdorf", "password", 12, "Very Good", "SCTCC", spec, prac);
-		Mockito.when(ds.signUp(doc)).thenReturn(doc);
-		
-		ResultActions ra = mvc.perform(post("/DoctorSignup").contentType(MediaType.APPLICATION_JSON).content(gson.toJson(doc)));
+
+		Mockito.when(ds.doctorLogin(doc)).thenReturn(doc);
+		ResultActions ra = mvc.perform(post("/doctorLogin").contentType(MediaType.APPLICATION_JSON).content(gson.toJson(doc)));
 		ra.andExpect(status().isOk());
 	}
+	
+	@Test
+	void loggedInDoctor() throws Exception {
+		Specialty spec= new Specialty(10, "Neurologist");
+		Practice prac = new Practice(101,"0800","2200","Address","London","Co",80037);
+		Doctor doc = new Doctor(1, "scott@gmail.com", "Scott", "Reisdorf", "password", 12, "Very Good", "SCTCC", spec, prac);
+
+		Mockito.when(ds.doctorLogin(doc)).thenReturn(doc);
+		ResultActions ra = mvc.perform(get("/loggedInDoctor").param("id", Integer.toString(doc.getDocId())));
+		ra.andExpect(status().isOk());
+		
+		ra = mvc.perform(get("/loggedInDoctor").param("id", Integer.toString(doc.getDocId())));
+		ra.andExpect(status().isOk());
+		ra.andExpect(content().string(""));
+	}
+	
 	
 }
